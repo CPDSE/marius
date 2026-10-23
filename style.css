@@ -56,7 +56,6 @@ body.view-diagram #caption .for-diagram { display: inline; }
 #diagram .light { fill: var(--soft-white); }
 #diagram .flow { fill: none; stroke: var(--sage); stroke-width: 3; }
 #diagram .flow-head { fill: var(--sage); }
-#diagram .schools { fill: var(--sand); stroke: var(--gold); stroke-width: 3; }
 .dn { cursor: pointer; outline: none; }
 .dn .shape { stroke-width: 3; transition: fill .15s, stroke .15s, stroke-width .15s; }
 .dn.community .shape { fill: rgba(169, 187, 170, .18); stroke: var(--sage); stroke-dasharray: 10 8; }
@@ -64,6 +63,8 @@ body.view-diagram #caption .for-diagram { display: inline; }
 .dn.fundamental .shape { fill: rgba(169, 187, 170, .45); stroke: var(--sage); }
 .dn.nucleus .shape { fill: var(--forest); stroke: var(--forest); }
 .dn.mission .shape { fill: var(--sand); stroke: var(--forest); }
+.dn.recipient .shape { fill: var(--sand); stroke: var(--gold); }
+.dn.recipient.hover .shape { fill: rgba(214, 193, 124, .55); }
 .dn.service .shape { fill: #F2DCDC; stroke: #7A1F1F; }
 .dn.service text { fill: #7A1F1F; }
 /* Same highlight language as the picture: gold on hover, a thick gold ring when selected */

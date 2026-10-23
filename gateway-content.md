@@ -422,6 +422,53 @@ one of the group leaders above, or the Research Community leads.
 
 ---
 
+## Who we serve (`CIR_RECIPIENTS`)
+
+*The recipients of the services, shown at the right of the diagram. Facts come from the
+pharmaschool bundle in `cpdse-okf-vault` (UCPH captured 17 Jun 2026, SDU 14 Aug 2026). The
+SDU side is only partly captured there: its master programmes are missing.*
+
+### PharmaSchools at SDU and UCPH (`RC01`)
+
+**About:** The pharmacy educations at the University of Copenhagen and the University of
+Southern Denmark, where CPDSE's Curriculum Upgrade service builds data science and AI into
+the courses.
+
+**UCPH: PharmaSchool**
+- [School of Pharmaceutical Sciences](https://pharmaschool.ku.dk/english/about-pharmaschool/),
+  Faculty of Health and Medical Sciences, Copenhagen.
+- Degrees: BSc Pharmacy, Cand.pharm, MSc in Pharmaceutical Sciences and MSc in Medicinal
+  Chemistry.
+- PhD education in the Drug Research Academy.
+- Continuing education: Master of Industrial Drug Development (MIND) and Master of
+  Medicines Regulatory Affairs (MRA).
+
+**SDU: Pharmacy in Odense**
+- Faculty of Science, administered by Physics, Chemistry and Pharmacy, with its own study
+  board for pharmacy.
+- Degree: [BSc Pharmacy](https://www.sdu.dk/da/uddannelse/bachelor/farmaci), three years.
+
+Served by Curriculum Upgrade.
+
+### University departments (`RC02`)
+
+**About:** The departments behind the pharma educations, whose researchers, research groups
+and staff use CPDSE's consulting and people-development services.
+
+**UCPH**
+- [Department of Pharmacy](https://pharmacy.ku.dk): design, formulation, delivery and
+  analysis of medicines.
+- [Department of Drug Design and Pharmacology](https://drug.ku.dk): drug design, molecular
+  pharmacology and drug action.
+
+**SDU**
+- Department of Physics, Chemistry and Pharmacy, Faculty of Science.
+
+Served by Research Project Consulting, Research Group Strategy Consulting and People
+Development.
+
+---
+
 ## Mission (`CIR_MISSION`)
 
 **Impact:** We set CPDSE's direction and secure the support of its foundations,

@@ -29,7 +29,8 @@
   // Column headings
   text(['THE SCIENCE'], 230, 62, 'd-col');
   text(['THE CENTER'], 730, 62, 'd-col');
-  text(['WHAT WE DELIVER'], 1150, 62, 'd-col');
+  text(['SERVICES'], 1120, 62, 'd-col');
+  text(['WHO WE SERVE'], 1365, 62, 'd-col');
 
   // Research community holding the six research themes, in value-chain order
   const rg = node('rg', 'community');
@@ -68,22 +69,32 @@
   text(['Nucleus'], 730, 498, 'd-label strong light', nucleus);
   text(['coordinates'], 730, 534, 'd-note light', nucleus);
 
-  // Services flowing out to the pharma schools
+  // Services and who they reach: Curriculum Upgrade the pharma schools,
+  // the other three the university departments
+  const recipients = {
+    rc01: { y: 225, h: 150, title: ['Pharma', 'Schools'], note: ['SDU + UCPH'] },
+    rc02: { y: 400, h: 400, title: ['University', 'departments'],
+            note: ['Pharmacy', 'Drug Design &', 'Pharmacology', '(UCPH)', '\u00a0', 'Physics, Chemistry', '& Pharmacy', '(SDU)'] },
+  };
   const services = [
-    ['sv01', ['Curriculum', 'Upgrade']],
-    ['sv02', ['Research Project', 'Consulting']],
-    ['sv03', ['Research Group', 'Strategy Consulting']],
-    ['sv04', ['People', 'Development']],
+    ['sv01', ['Curriculum', 'Upgrade'], 'rc01'],
+    ['sv02', ['Research Project', 'Consulting'], 'rc02'],
+    ['sv03', ['Research Group', 'Strategy Consulting'], 'rc02'],
+    ['sv04', ['People', 'Development'], 'rc02'],
   ];
-  services.forEach(([id, lines], i) => {
+  services.forEach(([id, lines, to], i) => {
     const cy = 300 + i * 140;
-    arrow(`M968 510 C1000 510 1000 ${cy} 1022 ${cy}`);
+    arrow(`M968 510 C985 510 985 ${cy} 997 ${cy}`);
     const g = node(id, 'service');
-    el('rect', { x: 1025, y: cy - 52, width: 250, height: 104, rx: 52, class: 'shape' }, g);
-    text(lines, 1150, cy, 'd-label', g);
-    arrow(`M1275 ${cy} H1318`);
+    el('rect', { x: 1000, y: cy - 52, width: 240, height: 104, rx: 52, class: 'shape' }, g);
+    text(lines, 1120, cy, 'd-label', g);
+    arrow(`M1240 ${cy} H1272`);
   });
-  el('rect', { x: 1322, y: 220, width: 132, height: 580, rx: 22, class: 'schools' });
-  text(['Pharma', 'schools'], 1388, 470, 'd-label strong', svg);
-  text(['SDU &', 'UCPH', '', 'students', 'teachers', 'depart-', 'ments'], 1388, 600, 'd-note', svg, 24);
+  for (const [id, r] of Object.entries(recipients)) {
+    const g = node(id, 'recipient');
+    el('rect', { x: 1276, y: r.y, width: 178, height: r.h, rx: 22, class: 'shape' }, g);
+    const top = r.y + (r.title.length > 1 ? 50 : 42);
+    text(r.title, 1365, top, 'd-label strong', g);
+    text(r.note, 1365, top + 26 * r.title.length + 12 * r.note.length + 4, 'd-note', g, 24);
+  }
 })();
