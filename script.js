@@ -78,7 +78,7 @@ function layoutIntro() {
   if (!document.body.classList.contains('intro')) return;
   const row = document.getElementById('caption-row'), cyc = document.getElementById('cycle-row');
   const fig = document.getElementById('figure'), btn = document.getElementById('start');
-  const S = 1.5, GAP = 16;
+  const S = 1.5, GAP = 40;
   const capH = row.offsetHeight * S, groupH = capH + GAP + btn.offsetHeight;
   const head = document.getElementById('title'), figH = fig.offsetHeight;
   // Lift the picture to just under the header; it slides back down when the intro ends
@@ -90,6 +90,7 @@ function layoutIntro() {
 }
 window.addEventListener('resize', layoutIntro);
 window.addEventListener('load', layoutIntro);
+new ResizeObserver(layoutIntro).observe(document.getElementById('caption-row'));
 layoutIntro();
 function start() {
   document.body.classList.remove('intro');
@@ -103,6 +104,8 @@ document.getElementById('restart').addEventListener('click', () => {
   cycleBtns.forEach(b => b.disabled = true);
   document.body.classList.add('intro');
   layoutIntro();
+  requestAnimationFrame(layoutIntro);
+  setTimeout(layoutIntro, 900);
 });
 
 function open(id) {
