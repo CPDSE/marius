@@ -104,6 +104,13 @@ body { background: var(--ivory); }
 }
 #popup.open { transform: translateX(0); }
 #popup h2 { margin-top: 0; color: var(--forest); padding-bottom: .5rem; border-bottom: 3px solid var(--gold); }
+#popup .lead { font-weight: bold; color: var(--charcoal); line-height: 1.5; }
+#popup h3 { color: var(--sage); font-size: 1rem; margin: 1.5rem 0 .25rem; }
+#popup .items { list-style: none; margin: 0; padding: 0; }
+#popup .items li { padding: .7rem 0; border-bottom: 1px solid var(--mint); font-size: .9rem; line-height: 1.45; }
+#popup .items strong { display: block; color: var(--forest); }
+#popup .items .meta { display: block; font-size: .8rem; color: var(--sage); font-style: italic; }
+#popup a { color: var(--forest); }
 #close {
   position: absolute; top: .5rem; right: .75rem; color: var(--forest);
   font-size: 2rem; line-height: 1; background: none; border: 0; cursor: pointer;

@@ -1,11 +1,3 @@
-// Popup content. Edit the text here.
-const CONTENT = {
-  er:      { title: 'ER / Work streams', body: '<p>Placeholder text about the ER / work streams.</p>' },
-  cyto:    { title: 'Cytoskeleton / Fundamentals', body: '<p>Placeholder text about the cytoskeleton / fundamentals.</p>' },
-  nucleus: { title: 'Nucleus', body: '<p>Placeholder text about the nucleus.</p>' },
-  rg:      { title: 'Research Groups', body: '<p>Placeholder text about the research groups.</p>' },
-};
-
 // Clickable areas as SVG paths in slide EMU coordinates, taken from the pptx.
 // The picture sits at x = -52681 and is 10111081 x 6858000 EMU.
 const PIC = { x: -52681, w: 10111081, h: 6858000 };
