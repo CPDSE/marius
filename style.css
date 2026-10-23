@@ -1,0 +1,108 @@
+﻿* { box-sizing: border-box; }
+:root {
+  --forest: #3C5E3E; --sage: #5F7D61; --mint: #A9BBAA;
+  --gold: #D6C17C; --sand: #E4D7A1; --ivory: #F6F1DC;
+  --charcoal: #333333; --soft-white: #F9F9F9;
+}
+html, body { margin: 0; height: 100%; font-family: Verdana, Geneva, sans-serif; color: var(--charcoal); }
+body { background: var(--ivory); }
+
+#stage {
+  display: flex; flex-direction: column; align-items: center;
+  width: 100%; height: 100%; padding: 0 1.5rem 1rem;
+}
+#title {
+  width: calc(100% + 3rem); margin: 0 -1.5rem .75rem; padding: .6rem 1rem;
+  text-align: center; background: var(--forest); color: var(--gold);
+  border-bottom: 4px solid var(--gold);
+}
+#title h1 { margin: 0; font-size: clamp(1rem, 2.6vh, 1.5rem); font-weight: 700; letter-spacing: .06em; }
+#title p { margin: .15rem 0 0; font-size: clamp(.65rem, 1.4vh, .8rem); color: var(--sand); }
+
+/* Frame matches the cropped slide picture (10111081 x 6858000 EMU) */
+#figure {
+  position: relative;
+  flex: none;
+  aspect-ratio: 10111081 / 6858000;
+  width: min(100%, calc((100vh - 6.5rem) * 10111081 / 6858000));
+}
+/* Feathers the picture's edges into the page background */
+#paper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 1%, #000 99%, transparent),
+                      linear-gradient(to bottom, transparent, #000 1.5%, #000 98.5%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 1%, #000 99%, transparent),
+              linear-gradient(to bottom, transparent, #000 1.5%, #000 98.5%, transparent);
+  mask-composite: intersect;
+}
+/* Reproduces the crop used in the pptx (l=2.346%, t=2.823%, b=4.925%) */
+#cell {
+  position: absolute;
+  width: 102.402%;
+  height: 108.396%;
+  left: -2.402%;
+  top: -3.06%;
+  user-select: none;
+}
+/* Non-clickable text: italic, regular weight, muted, no pointer */
+.label.static {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--charcoal);
+  -webkit-text-stroke: 0;
+  text-shadow: 0 0 3px var(--ivory), 0 0 3px var(--ivory), 0 0 6px var(--ivory);
+  cursor: default;
+}
+#hotspots { position: absolute; inset: 0; container-type: inline-size; }
+#arrow { overflow: visible; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.2;
+  font-weight: 700;
+  -webkit-text-stroke: 0.2em var(--ivory);
+  paint-order: stroke fill;
+  text-shadow: 0 0 .3em var(--ivory), 0 0 .3em var(--ivory);
+  pointer-events: none;
+}
+
+/* Invisible but clickable */
+.hs {
+  position: absolute;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+.hs:focus-visible { outline: 2px dashed var(--forest); }
+.hs.hover { background: rgba(214, 193, 124, .35); box-shadow: 0 0 0 3px var(--gold), 0 0 18px 6px rgba(214, 193, 124, .7); }
+.hs.selected { background: rgba(60, 94, 62, .18); box-shadow: 0 0 0 3px var(--forest), 0 0 0 6px var(--gold), 0 0 22px 8px rgba(60, 94, 62, .45); }
+.hs { transition: background .15s, box-shadow .15s; }
+
+#popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(380px, 100%);
+  padding: 2rem 1.5rem;
+  background: var(--soft-white);
+  border-left: 6px solid var(--forest);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, .25);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .25s ease;
+}
+#popup.open { transform: translateX(0); }
+#popup h2 { margin-top: 0; color: var(--forest); padding-bottom: .5rem; border-bottom: 3px solid var(--gold); }
+#close {
+  position: absolute; top: .5rem; right: .75rem; color: var(--forest);
+  font-size: 2rem; line-height: 1; background: none; border: 0; cursor: pointer;
+}
