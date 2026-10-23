@@ -95,7 +95,7 @@ function start() {
 }
 document.getElementById('start').addEventListener('click', start);
 // Pressing any button or link on the page ends the intro blur
-document.addEventListener('click', e => { if (e.target.closest('button, a, .hs, .link')) start(); }, true);
+document.addEventListener('click', e => { if (e.target.closest('button, a, .hs, .dn, .link')) start(); }, true);
 
 function open(id) {
   start();
@@ -107,8 +107,9 @@ function open(id) {
   popup.scrollTop = 0;
   // Open on the side that covers less of the element, so it stays visible.
   // Popups without an element in the picture (the help overview) open on the right.
-  const boxes = (groups[id] || [{ getBoundingClientRect: () => ({ left: 0, right: 0 }) }])
-    .map(b => b.getBoundingClientRect());
+  // Elements of the hidden view (tissue or diagram) have empty boxes and are left out.
+  let boxes = (groups[id] || []).map(b => b.getBoundingClientRect()).filter(r => r.width || r.height);
+  if (!boxes.length) boxes = [{ left: 0, right: 0 }];
   const l = Math.min(...boxes.map(r => r.left)), r = Math.max(...boxes.map(r => r.right));
   const w = popup.offsetWidth, vw = window.innerWidth;
   const coverLeft = Math.max(0, Math.min(r, w) - l);
@@ -133,10 +134,9 @@ areaLayer.setAttribute('viewBox', `${PIC.x} 0 ${PIC.w} ${PIC.h}`);
 glowLayer.setAttribute('viewBox', `${PIC.x} 0 ${PIC.w} ${PIC.h}`);
 const pct = (v, total) => (v / total * 100) + '%';
 
-for (const [id, d] of AREAS) {
-  const b = document.createElementNS(SVG_NS, 'path');
-  b.setAttribute('d', d);
-  b.setAttribute('class', 'hs');
+// A clickable element of the picture or the diagram that opens popup `id`.
+// Elements sharing an id (connected areas, or the same thing in both views) highlight together.
+function makeClickable(b, id) {
   b.setAttribute('role', 'button');
   b.setAttribute('tabindex', '0');
   b.setAttribute('aria-label', CONTENT[id].title);
@@ -144,12 +144,20 @@ for (const [id, d] of AREAS) {
   b.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.dispatchEvent(new Event('click')); }
   });
-  // Connected areas share an id and highlight together
   (groups[id] ||= []).push(b);
   b.addEventListener('mouseenter', () => setClass(id, 'hover', true));
   b.addEventListener('mouseleave', () => setClass(id, 'hover', false));
   b.addEventListener('focus', () => setClass(id, 'hover', true));
   b.addEventListener('blur', () => setClass(id, 'hover', false));
+}
+
+for (const n of document.querySelectorAll('#diagram [data-id]')) makeClickable(n, n.dataset.id);
+
+for (const [id, d] of AREAS) {
+  const b = document.createElementNS(SVG_NS, 'path');
+  b.setAttribute('d', d);
+  b.setAttribute('class', 'hs');
+  makeClickable(b, id);
   areaLayer.appendChild(b);
   // Separate layer so the glow only affects selected shapes, never hover
   const g = document.createElementNS(SVG_NS, 'path');
@@ -208,6 +216,20 @@ for (const c of document.querySelectorAll('.concept')) {
   c.addEventListener('blur', () => hover(false));
   c.addEventListener('click', () => (ids.includes(current) ? close() : open(ids[0])));
 }
+
+// Tissue picture or abstract diagram: chosen with the header switch or ?view=diagram,
+// and remembered in this browser
+const viewButtons = document.querySelectorAll('#view-switch button');
+function setView(view) {
+  document.body.classList.toggle('view-diagram', view === 'diagram');
+  viewButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
+  try { localStorage.setItem('pds-view', view); } catch {}
+  layoutIntro();
+}
+viewButtons.forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
+let savedView = null;
+try { savedView = localStorage.getItem('pds-view'); } catch {}
+setView(new URLSearchParams(location.search).get('view') || savedView || 'tissue');
 
 // The help overview: opened from the header; its names jump to their popups.
 // "area#item" opens the area's popup with that entry expanded and in view.
@@ -279,7 +301,9 @@ body.addEventListener('click', e => {
 });
 
 document.getElementById('close').addEventListener('click', close);
-const ORDER = [...new Set([...AREAS, ...LINK_LABELS].map(a => a[0]))];
+// Picture order first, then anything only in the diagram (the mission)
+const ORDER = [...new Set([...AREAS, ...LINK_LABELS].map(a => a[0])
+  .concat([...document.querySelectorAll('#diagram [data-id]')].map(n => n.dataset.id)))];
 function step(dir) {
   const i = ORDER.indexOf(current);
   if (i < 0) return open(ORDER[dir > 0 ? 0 : ORDER.length - 1]);
@@ -299,5 +323,5 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 // A link in the popup that opened another popup has been replaced by then (not connected).
 document.addEventListener('click', e => {
   if (current && e.target.isConnected && !popup.contains(e.target)
-      && !e.target.closest('.hs, .link, .concept, .cycle, #help-all, #feedback')) close();
+      && !e.target.closest('.hs, .dn, .link, .concept, .cycle, #help-all, #feedback, #view-switch')) close();
 });
