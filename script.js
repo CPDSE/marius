@@ -86,7 +86,7 @@ new ResizeObserver(syncHeader).observe(header);
 syncHeader();
 const cycleBtns = document.querySelectorAll('.cycle');
 cycleBtns.forEach(b => b.disabled = true);
-// Centre the enlarged caption and the start button as one group over the blurred picture
+// Centre the enlarged caption and the view choice as one group over the blurred picture
 function layoutIntro() {
   if (!document.body.classList.contains('intro')) return;
   const row = document.getElementById('caption-row'), cyc = document.getElementById('cycle-row');
@@ -109,7 +109,11 @@ function start() {
   document.body.classList.remove('intro');
   cycleBtns.forEach(b => b.disabled = false);
 }
-document.getElementById('start').addEventListener('click', start);
+// The splash question picks the view, then starts
+document.querySelectorAll('#start button').forEach(b => b.addEventListener('click', () => {
+  setView(b.dataset.view);
+  start();
+}));
 // Pressing any button or link on the page ends the intro blur
 document.addEventListener('click', e => { if (e.target.closest('button, a, .hs, .dn, .link') && !e.target.closest('#restart')) start(); }, true);
 document.getElementById('restart').addEventListener('click', () => {

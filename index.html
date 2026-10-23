@@ -31,7 +31,13 @@
         </div>
       </div>
       <div id="figure">
-        <button id="start">Start exploring<small>Click an area to learn more</small></button>
+        <div id="start" role="group" aria-labelledby="start-q">
+          <p id="start-q">How would you like to explore?</p>
+          <div class="start-choices">
+            <button type="button" data-view="tissue">🧬 Our tissue metaphor<small>if you are into biology</small></button>
+            <button type="button" data-view="diagram">🔷 An abstract diagram<small>boxes and arrows, no biology</small></button>
+          </div>
+        </div>
         <div id="paper"><img id="cell" src="cell.png" alt="Cell metaphor overview" draggable="false"></div>
         <div id="hotspots">
           <svg id="nuclei" preserveAspectRatio="none" aria-hidden="true"></svg>

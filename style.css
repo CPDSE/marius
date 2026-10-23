@@ -105,19 +105,28 @@ body.intro #restart { display: none; }
   aspect-ratio: 10111081 / 6858000;
   width: min(100%, calc((100vh - 15.3rem) * 10111081 / 6858000));
 }
-/* Intro state: picture is blurred until the visitor presses Start */
+/* Intro state: picture is blurred until the visitor picks a view */
 #figure #paper, #figure #hotspots, #figure #diagram { transition: filter .6s ease, opacity .6s ease; }
 body.intro #figure #paper, body.intro #figure #hotspots, body.intro #figure #diagram { filter: blur(14px); opacity: .7; pointer-events: none; }
+/* The splash question: choose the tissue picture or the abstract diagram */
 #start {
   display: none; position: absolute; left: 50%; top: var(--start-y, 50%); transform: translateX(-50%); z-index: 3;
-  font: inherit; font-size: clamp(1rem, 2.6vh, 1.4rem); font-weight: bold; letter-spacing: .05em;
+  text-align: center; width: max-content; max-width: 92%;
+}
+body.intro #start { display: block; }
+#start-q {
+  margin: 0 0 .7rem; font-size: clamp(1rem, 2.4vh, 1.3rem); font-weight: bold; color: var(--forest);
+  display: inline-block; padding: .2em .8em; border-radius: 999px; background: var(--ivory);
+}
+.start-choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+.start-choices button {
+  font: inherit; font-size: clamp(1rem, 2.4vh, 1.3rem); font-weight: bold; letter-spacing: .03em;
   color: var(--forest); background: var(--gold); border: 3px solid var(--forest); border-radius: 999px;
-  padding: .7em 2em; cursor: pointer; box-shadow: 0 4px 18px rgba(0, 0, 0, .3);
+  padding: .6em 1.6em; cursor: pointer; box-shadow: 0 4px 18px rgba(0, 0, 0, .3);
   transition: background .15s, transform .15s;
 }
-body.intro #start { display: block; text-align: center; }
-#start small { display: block; margin-top: .3em; font-size: .6em; font-weight: normal; letter-spacing: 0; }
-#start:hover, #start:focus-visible { background: var(--sand); transform: translateX(-50%) scale(1.05); }
+.start-choices small { display: block; margin-top: .25em; font-size: .62em; font-weight: normal; letter-spacing: 0; }
+.start-choices button:hover, .start-choices button:focus-visible { background: var(--sand); transform: scale(1.05); }
 /* Explanation of the metaphor above the picture, flanked by arrows that cycle through the areas */
 #caption-row {
   display: flex; align-items: center; justify-content: center; gap: .6rem;
