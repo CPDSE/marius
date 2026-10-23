@@ -71,6 +71,9 @@ body.view-diagram #caption .for-diagram { display: inline; }
 .dn.theme.hover .shape, .dn.community.hover .shape { fill: rgba(214, 193, 124, .3); }
 .dn.selected .shape { stroke: var(--gold); stroke-width: 10; stroke-dasharray: none; }
 .dn:focus-visible .shape { stroke: var(--forest); stroke-dasharray: 6 4; }
+#restart { background: none; color: var(--sand); border: 1px solid rgba(228, 215, 161, .55); font: inherit; font-size: clamp(.7rem, 1.6vh, .9rem); border-radius: 999px; padding: .3em .8em; cursor: pointer; white-space: nowrap; }
+#restart:hover, #restart:focus-visible { background: rgba(228, 215, 161, .18); color: var(--ivory); }
+body.intro #restart { display: none; }
 #feedback { background: none; color: var(--sand); border: 1px solid rgba(228, 215, 161, .55); font-weight: normal; padding: .3em .8em; }
 #feedback:hover, #feedback:focus-visible { background: rgba(228, 215, 161, .18); color: var(--ivory); }
 #fb-dialog { border: 3px solid var(--forest); border-radius: .8rem; background: var(--ivory); color: var(--charcoal); padding: 1.2rem 1.4rem; width: min(30rem, 92vw); }
@@ -202,6 +205,7 @@ body.intro #cycle-row { opacity: 0; pointer-events: none; visibility: hidden; tr
 .label.link:hover, .label.link.hover { text-decoration: underline; }
 /* Service names beside the red blood cells, in the cells' dark red */
 .label.svc { color: #7A1F1F; }
+.label.rgl { color: var(--forest); }
 .label {
   position: absolute;
   transform: translate(-50%, -50%);
