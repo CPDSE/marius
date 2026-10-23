@@ -5,7 +5,8 @@ Run after editing the markdown:  python3 build_content.py
 Each "## Circle (`ID`)" becomes a popup; its "### Item (`ID`)" sections become
 expandable entries inside it. Items whose id starts with a prefix in
 SPLIT_PREFIXES get a popup of their own instead: each service (one per red
-blood cell) and each research theme (one per research-group shape). A
+blood cell), each research theme (one per research-group shape) and each
+recipient of the services (in the diagram). A
 "**Wanna help?**" paragraph becomes a box at the end of the popup or entry, holding
 the Basecamp link. Editorial notes in the markdown (italic lines, "> " blockquotes,
 "(inferred)" markers, the "Open points" section) are left out.
@@ -29,10 +30,11 @@ AREA_IDS = {
     'CIR_FUNDAMENTAL': 'cyto',
     'CIR_NUCLEUS': 'nucleus',
     'CIR_RESEARCH': 'rg',
-    'CIR_MISSION': 'mission',  # no area in the figure yet
+    'CIR_MISSION': 'mission',  # only in the diagram
+    'CIR_RECIPIENTS': None,  # who the services reach; only in the diagram
 }
 # Items with these id prefixes get their own popup, keyed by lowercased id (e.g. th01)
-SPLIT_PREFIXES = ('SV', 'TH')
+SPLIT_PREFIXES = ('SV', 'TH', 'RC')
 # Left out of the "all the ways to help" popup: the themes share one generic invitation,
 # and the Fundamental circle's own just points at its areas
 OVERVIEW_SKIP = ('TH', 'CIR_FUNDAMENTAL')
@@ -84,11 +86,12 @@ def split_sections(lines):
 
 
 def parse_block(lines):
-    """Return impact, responsibilities, meta text, Basecamp link, group names and help of a section.
+    """Return impact, responsibilities, meta text, Basecamp link, group names, help and lists of a section.
 
     help is (intro text, [asks]) from a "**Wanna help?**" paragraph, or None.
+    lists are (heading, [items]) from any other "**Heading**" paragraph followed by bullets.
     """
-    impact, resp, meta, basecamp, members, help_ = '', [], [], None, [], None
+    impact, resp, meta, basecamp, members, help_, lists = '', [], [], None, [], None, []
     paragraphs, para = [], []
     for line in lines + ['']:
         if line.strip() in ('', '---'):
@@ -111,6 +114,15 @@ def parse_block(lines):
                 else:
                     intro.append(line.strip())
             help_ = (' '.join(intro), asks)
+        elif re.fullmatch(r'\*\*[^*]+\*\*', first.strip()) and first.strip() not in (
+                '**Groups**', '**Responsibilities**'):
+            items = []
+            for line in para[1:]:
+                if line.startswith('- '):
+                    items.append(line[2:].strip())
+                elif items:
+                    items[-1] += ' ' + line.strip()
+            lists.append((first.strip()[2:-2], items))
         elif first.startswith('**Groups**'):
             members = [l[2:].strip() for l in para[1:] if l.startswith('- ')]
         elif first.startswith('**Responsibilities**'):
@@ -130,7 +142,7 @@ def parse_block(lines):
             if link:
                 label = 'Basecamp project' if bc.strip().startswith('[') else 'Related Basecamp project'
                 basecamp = (label, link.group(2))
-    return impact, resp, ' '.join(meta), basecamp, members, help_
+    return impact, resp, ' '.join(meta), basecamp, members, help_, lists
 
 
 def research_group_items():
@@ -192,10 +204,13 @@ def link_people(body, people):
     return ''.join(out)
 
 
-def render_details(resp, meta):
+def render_details(resp, meta, lists=()):
     parts = []
     if resp:
         parts.append('<ul class="resp">' + ''.join(f'<li>{inline(r)}</li>' for r in resp) + '</ul>')
+    for heading, items in lists:
+        parts.append(f'<h3>{inline(heading)}</h3><ul class="resp">'
+                     + ''.join(f'<li>{inline(i)}</li>' for i in items) + '</ul>')
     if meta:
         parts.append(f'<p class="meta">{inline(meta)}</p>')
     return ''.join(parts)
@@ -256,7 +271,7 @@ def build():
     # For the "all the ways to help" popup: circle title -> [entry html]
     overview = {}
     for level, title, sid, body in split_sections(lines):
-        impact, resp, meta, basecamp, members, help_ = parse_block(body)
+        impact, resp, meta, basecamp, members, help_, lists = parse_block(body)
         if level == 2:
             circle_title, circle_area = title, AREA_IDS.get(sid)
         if help_ and not sid.startswith(OVERVIEW_SKIP):
@@ -270,7 +285,7 @@ def build():
                 entry += '<ul>' + ''.join(render_ask(a) for a in asks) + '</ul>'
             overview.setdefault(circle_title, []).append(entry + render_basecamp(basecamp) + '</li>')
         popup = {'title': title, 'lead': f'<p class="lead">{inline(impact)}</p>',
-                 'details': render_details(resp, meta), 'help': render_help(help_, basecamp),
+                 'details': render_details(resp, meta, lists), 'help': render_help(help_, basecamp),
                  'children': [], 'prefix': None, 'has_resp': bool(resp)}
         if members:
             missing = [m for m in members if m not in researchers]
