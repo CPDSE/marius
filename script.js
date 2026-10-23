@@ -40,7 +40,12 @@ const title = document.getElementById('popup-title');
 const body = document.getElementById('popup-body');
 
 const groups = {};
-const setClass = (id, cls, on) => groups[id].forEach(b => b.classList.toggle(cls, on));
+const glowLayer = document.getElementById('glow');
+const glowGroups = {};
+const setClass = (id, cls, on) => {
+  groups[id].forEach(b => b.classList.toggle(cls, on));
+  if (cls === 'selected') glowGroups[id].forEach(g => g.classList.toggle('on', on));
+};
 let current = null;
 
 function open(id) {
@@ -62,6 +67,7 @@ function close() {
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const areaLayer = document.getElementById('areas');
 areaLayer.setAttribute('viewBox', `${PIC.x} 0 ${PIC.w} ${PIC.h}`);
+glowLayer.setAttribute('viewBox', `${PIC.x} 0 ${PIC.w} ${PIC.h}`);
 const pct = (v, total) => (v / total * 100) + '%';
 
 for (const [id, d] of AREAS) {
@@ -82,6 +88,12 @@ for (const [id, d] of AREAS) {
   b.addEventListener('focus', () => setClass(id, 'hover', true));
   b.addEventListener('blur', () => setClass(id, 'hover', false));
   areaLayer.appendChild(b);
+  // Separate layer so the glow only affects selected shapes, never hover
+  const g = document.createElementNS(SVG_NS, 'path');
+  g.setAttribute('d', d);
+  g.setAttribute('class', 'gl');
+  glowLayer.appendChild(g);
+  (glowGroups[id] ||= []).push(g);
 }
 
 for (const [html, x, y, w, h, pt, color] of LABELS) {

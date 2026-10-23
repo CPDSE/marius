@@ -86,7 +86,12 @@ body { background: var(--ivory); }
 }
 .hs:focus-visible { stroke: var(--forest); stroke-dasharray: 6 4; }
 .hs.hover { fill: rgba(214, 193, 124, .35); stroke: var(--gold); filter: drop-shadow(0 0 8px rgba(214, 193, 124, .9)); }
-.hs.selected { fill: rgba(60, 94, 62, .2); stroke: var(--forest); stroke-dasharray: none; filter: drop-shadow(0 0 9px rgba(60, 94, 62, .7)); }
+.hs.selected { fill: rgba(214, 193, 124, .2); stroke: var(--gold); stroke-width: 5px; stroke-dasharray: none; }
+/* Glow for selected shapes lives on its own layer so hover is unaffected */
+#glow { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none;
+  filter: drop-shadow(0 0 3px var(--sand)) drop-shadow(0 0 8px var(--gold)) drop-shadow(0 0 16px var(--gold)); }
+.gl { fill: none; stroke: var(--gold); stroke-width: 5px; vector-effect: non-scaling-stroke; display: none; }
+.gl.on { display: block; }
 
 #popup {
   position: fixed;
