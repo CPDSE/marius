@@ -20,6 +20,14 @@ body { background: var(--ivory); }
 #logo { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); display: block; line-height: 0; }
 #logo img { height: clamp(1.8rem, 5.5vh, 3rem); width: auto; display: block; transition: opacity .15s; }
 #logo:hover img, #logo:focus-visible img { opacity: .8; }
+/* Opens the overview of all help needed */
+#help-all {
+  position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
+  font: inherit; font-size: clamp(.7rem, 1.6vh, .9rem); font-weight: bold;
+  color: var(--forest); background: var(--gold); border: 0; border-radius: 999px;
+  padding: .4em 1em; cursor: pointer; transition: background .15s;
+}
+#help-all:hover, #help-all:focus-visible { background: var(--sand); }
 #title h1 { margin: 0; font-size: clamp(1rem, 2.6vh, 1.5rem); font-weight: 700; letter-spacing: .06em; }
 #title p { margin: .15rem 0 0; font-size: clamp(.65rem, 1.4vh, .8rem); color: var(--sand); }
 
@@ -182,7 +190,51 @@ body { background: var(--ivory); }
 #popup .help p { margin: .3rem 0; }
 #popup .help ul { margin: .4rem 0; padding-left: 1.1rem; }
 #popup .help li, #popup .items .help li { margin: .25rem 0; padding: 0; border: 0; font-size: .85rem; }
-#popup .help p.bc { margin-top: .6rem; padding-top: .5rem; border-top: 1px dashed var(--gold); }
+/* Little link to a person's Basecamp profile, after their name */
+#popup a.bcp {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.15em; height: 1.15em; margin: 0 .1em 0 .2em; vertical-align: -.15em;
+  border-radius: 50%; background: var(--mint); color: var(--forest);
+  text-decoration: none; transition: background .15s, color .15s;
+}
+#popup a.bcp svg { width: .7em; height: .7em; fill: currentColor; }
+#popup a.bcp:hover, #popup a.bcp:focus-visible { background: var(--forest); color: var(--soft-white); }
+
+/* Category labels on each help ask */
+#popup .tags { display: flex; flex-wrap: wrap; gap: .25rem; margin-top: .2rem; }
+#popup .tag {
+  font-size: .68rem; line-height: 1.5; padding: 0 .45em; border-radius: 999px;
+  background: var(--mint); color: var(--forest);
+}
+#popup .tag.interest { background: var(--sand); }
+#popup .tag.time { background: transparent; box-shadow: inset 0 0 0 1px var(--sage); }
+
+/* Filter chips at the top of the help overview */
+#popup .filters { margin: 1rem 0 .5rem; padding: .7rem .8rem; background: var(--ivory); border-radius: 6px; }
+#popup .frow { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; margin: .25rem 0; }
+#popup .frow > span { width: 100%; font-size: .75rem; font-weight: bold; color: var(--sage); }
+#popup .chip {
+  font: inherit; font-size: .75rem; padding: .2em .7em; border-radius: 999px; cursor: pointer;
+  color: var(--forest); background: var(--soft-white); border: 1px solid var(--mint);
+}
+#popup .chip:hover { border-color: var(--forest); }
+#popup .chip[aria-pressed="true"] { background: var(--forest); color: var(--soft-white); border-color: var(--forest); }
+#popup .fcount { margin: .4rem 0 0; font-size: .75rem; color: var(--sage); font-style: italic; }
+#popup .fcount:empty { display: none; }
+
+/* Help overview: one entry per area, its name jumps to the area's popup */
+#popup .overview > li { padding: .8rem 0; font-size: .85rem; }
+#popup .overview ul { margin: .3rem 0; padding-left: 1.1rem; }
+#popup .overview ul li { margin: .25rem 0; padding: 0; border: 0; font-size: .85rem; }
+#popup .overview p { margin: .25rem 0; }
+#popup .goto {
+  font: inherit; font-weight: bold; font-size: .95rem; color: var(--forest);
+  background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
+  text-decoration: underline dotted; text-underline-offset: .2em;
+}
+#popup .goto::after { content: ' →'; }
+#popup .goto:hover, #popup .goto:focus-visible { text-decoration-style: solid; }
+#popup .help p.bc {margin-top: .6rem; padding-top: .5rem; border-top: 1px dashed var(--gold); }
 
 /* Expandable services/areas: click the summary to show responsibilities */
 #popup .expand li { padding: 0; }

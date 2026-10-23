@@ -8,6 +8,10 @@ Each circle, service and Fundamental area has:
 - **responsibilities**: what it answers for on an ongoing basis. These are not tasks
   to check off; a responsibility stays true for as long as the circle exists.
 
+Each ask under **Wanna help?** ends with a tag such as
+`{skill: coding, writing; interest: education; time: hours}`, used to filter the help overview
+on the website. Allowed values are listed in CATEGORIES in `build_content.py`.
+
 IDs match the spreadsheet so the text can be copied back. Sources: the WoW 2.0 pages
 in `cpdse-okf-vault` (Season 4, Sept 2026) and the circle and service projects in
 Basecamp. Anything inferred rather than stated in a source is marked *(inferred)*.
@@ -59,10 +63,10 @@ work requires.
 
 **Wanna help?** Help shape what the next generation of pharmacists learns about data
 science and AI. Talk to Lykke (UCPH) or Sebastian (SDU). Open asks right now:
-- Join the systematic review of educational research literature: synthesis, write-up and presentation.
-- Help design proper course evaluations for the upgraded courses.
-- Network with other data-science centres about computational teaching infrastructure.
-- Sign up to help improve the R documentation page that courses link to.
+- Join the systematic review of educational research literature: synthesis, write-up and presentation. {skill: writing; interest: education, research; time: days}
+- Help design proper course evaluations for the upgraded courses. {skill: teaching; interest: education; time: days}
+- Network with other data-science centres about computational teaching infrastructure. {skill: organising; interest: education, tech; time: hours}
+- Sign up to help improve the R documentation page that courses link to. {skill: coding, writing; interest: education; time: hours}
 
 Leads: Lykke Pedersen (UCPH), Sebastian Jakobsen (SDU). Advisory board: Curriculum
 Transformation Board.
@@ -85,6 +89,7 @@ that researchers can do analyses, models and visualisations they could not do al
 **Wanna help?** If you enjoy getting your hands dirty with real research data, this is
 for you. And if your own project needs a data scientist, this is where to start. Get in touch
 with Arnault.
+- Help a research project with an analysis, a model or a visualisation. {skill: coding; interest: research; time: days}
 
 Lead: Arnault-Quentin Vermillet (with Sarah Mittenentzwei at SDU later, if needed).
 Advisory board: Institutional Advisory Board.
@@ -109,6 +114,7 @@ rather than project by project.
 **Wanna help?** Help research groups take the next step with data science, from
 pipelines to hiring. Interested in joining a strategy conversation, or would your own group
 like one? Get in touch with Morten.
+- Join a conversation with a research group about its data-science strategy. {skill: organising; interest: research; time: hours}
 
 Lead: Morten Lindow. Advisory board: Institutional Advisory Board.
 Basecamp: [WS:Research Group Strategy Consulting](https://3.basecamp.com/6021648/projects/48628172)
@@ -131,8 +137,8 @@ AI skills, so that they can use these methods in their own teaching and research
 
 **Wanna help?** Share what you know and watch colleagues grow. Talk to Jacob. Open asks
 right now:
-- Organise a GitHub training event for teachers.
-- Organise a uCloud training event for teachers.
+- Organise a GitHub training event for teachers. {skill: teaching, organising; interest: education, tech; time: days}
+- Organise a uCloud training event for teachers. {skill: teaching, organising; interest: education, tech; time: days}
 
 Lead: Jacob Fredegaard Hansen. Advisory board: Institutional Advisory Board.
 Basecamp: [WS:People development](https://3.basecamp.com/6021648/projects/48628170)
@@ -183,9 +189,10 @@ so that the centre keeps learning and its services rest on a shared foundation.
 - Keep shared coding standards and documentation (Python, R) available and up to date *(inferred)*.
 
 **Wanna help?** Help CPDSE keep learning. Open asks right now:
-- Sign up for the next sprint and suggest topics in the Sprint app (Finn).
-- Design content and curate resources for the student Code Club at UCPH (Arnault).
-- Join the hackathon crew (Philipp) or the core-models group (Morten).
+- Sign up for the next sprint and suggest topics in the Sprint app (Finn). {skill: curious; interest: community; time: days}
+- Design content and curate resources for the student Code Club at UCPH (Arnault). {skill: coding, teaching; interest: education; time: ongoing}
+- Join the hackathon crew (Philipp). {skill: coding, organising; interest: education, community; time: days}
+- Help improve and apply CPDSE's core models (Morten). {skill: writing; interest: education; time: ongoing}
 
 Basecamp: [Education and development to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249028248)
 
@@ -203,10 +210,10 @@ together, so that people across institutions know each other and want to work to
 - Facilitate the coordination meetings (Nucleus and portfolio syncs) *(inferred)*.
 
 **Wanna help?** Make CPDSE a place people want to be. Open asks right now:
-- Shape retrospectives and feedback formats, and help onboard affiliated people (Lykke).
-- Bring ideas for CPDSE Connect sessions, or for an escape-room event (Jeppe).
+- Shape retrospectives and feedback formats, and help onboard affiliated people (Lykke). {skill: organising; interest: community; time: ongoing}
+- Bring ideas for CPDSE Connect sessions, or for an escape-room event (Jeppe). {skill: curious; interest: community; time: hours}
 - Show CPDSE's progress on posters or screens in our UCPH spaces (Jeppe), or help
-  furnish the SDU space (Cecilie).
+  furnish the SDU space (Cecilie). {skill: design; interest: community; time: hours}
 
 Basecamp: [Community & Engagement to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249026942)
 
@@ -226,11 +233,11 @@ so that members can work with data and with each other without technical barrier
 - Work with KU-IT and SDU IT on behalf of the centre.
 
 **Wanna help?** Tinkerers wanted. Open asks right now:
-- Alpha-test CPDSE's own local LLM, private and free to use (Arnault).
+- Alpha-test CPDSE's own local LLM, private and free to use (Arnault). {skill: curious; interest: tech; time: ongoing}
 - Work out where to store data repositories, and how to bring in and share data with
-  the outside world (Kasper).
-- Write a GitHub 101 on how to access CPDSE materials (Sarah).
-- Join one of the AI strategy sub-groups (Sarah).
+  the outside world (Kasper). {skill: coding; interest: tech, research; time: days}
+- Write a GitHub 101 on how to access CPDSE materials (Sarah). {skill: coding, writing; interest: tech, education; time: hours}
+- Join one of the AI strategy sub-groups (Sarah). {skill: curious; interest: tech; time: ongoing}
 
 Basecamp: [Infrastructure & Tools to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249025835)
 
@@ -247,10 +254,10 @@ informed and partners, students and the wider field know what CPDSE offers.
 - Maintain the CPDSE visual identity: graphical assets, slide decks and merchandise.
 
 **Wanna help?** Got a story, an eye for design or a camera? Open asks right now:
-- Suggest stories about CPDSE for LinkedIn (Jacob).
-- Take photos, and update posters and flyers with the new logo (Jeppe).
-- Help visualise WoW 2.0 and the tissue picture, for example as a booklet (Jeppe).
-- Have an idea for the website? Open a to-do for it (Sarah).
+- Suggest stories about CPDSE for LinkedIn (Jacob). {skill: writing; interest: outreach; time: hours}
+- Take photos, and update posters and flyers with the new logo (Jeppe). {skill: design; interest: outreach; time: hours}
+- Help visualise WoW 2.0 and the tissue picture, for example as a booklet (Jeppe). {skill: design, writing; interest: outreach, community; time: days}
+- Have an idea for the website? Open a to-do for it (Sarah). {skill: curious; interest: outreach; time: hours}
 
 Basecamp: [Comms & SoMe to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249025188)
 
@@ -268,8 +275,8 @@ that they quickly know where things are, who to ask and how to take part.
 **Wanna help?** Remember your own first week? Help make it better for the next person.
 Open asks right now:
 - Build the onboarding plans for new PhD students and new members, from preboarding to
-  the first three months (Jeppe).
-- Help work out how we find out who is joining CPDSE (Karlis).
+  the first three months (Jeppe). {skill: organising, writing; interest: community; time: days}
+- Help work out how we find out who is joining CPDSE (Karlis). {skill: organising; interest: community; time: hours}
 
 Basecamp: [Onboarding to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249024555)
 
@@ -291,6 +298,7 @@ moves as one.
 
 **Wanna help?** Curious how the pieces fit together? Join a weekly check-in or a
 sprint, or talk to Lykke.
+- Join a weekly Nucleus check-in to see how the circles work together. {skill: curious; interest: community; time: ongoing}
 
 Members: CPDSE's full-time staff and research group leaders. Lead: Lykke Pedersen
 (as portfolio lead). Meets weekly.
@@ -321,10 +329,10 @@ advance research they could not do alone.
 **Wanna help?** Everybody doing pharmaceutical data-science research is welcome.
 Drop by Convergence Coffee on Fridays, or join one of the community experiments from the
 summer retreat:
-- A writing retreat (Casper).
-- Active exchange around shared scientific questions (Anders).
-- Peer dialogues for PhD students (Finn).
-- An infrastructure knowledge base, which still needs an owner.
+- A writing retreat (Casper). {skill: writing; interest: research; time: days}
+- Active exchange around shared scientific questions (Anders). {skill: curious; interest: research; time: hours}
+- Peer dialogues for PhD students (Finn). {skill: curious; interest: research, community; time: hours}
+- An infrastructure knowledge base, which still needs an owner. {skill: organising, writing; interest: research, tech; time: ongoing}
 
 Leads: Philipp Hans, Karlis Berzins, Jane Knöchel, Casper Steinmann. Main priority for
 Season 4.

@@ -58,7 +58,7 @@ const glowGroups = {};
 // Caption words that stand for an area: id -> the words that mention it
 const conceptLinks = {};
 const setClass = (id, cls, on) => {
-  groups[id].forEach(b => b.classList.toggle(cls, on));
+  (groups[id] || []).forEach(b => b.classList.toggle(cls, on));
   if (cls === 'selected') (glowGroups[id] || []).forEach(g => g.classList.toggle('on', on));
   (conceptLinks[id] || []).forEach(c => c.classList.toggle(cls, on));
 };
@@ -71,8 +71,10 @@ function open(id) {
   title.textContent = CONTENT[id].title;
   body.innerHTML = CONTENT[id].body;
   popup.scrollTop = 0;
-  // Open on the side that covers less of the element, so it stays visible
-  const boxes = groups[id].map(b => b.getBoundingClientRect());
+  // Open on the side that covers less of the element, so it stays visible.
+  // Popups without an element in the picture (the help overview) open on the right.
+  const boxes = (groups[id] || [{ getBoundingClientRect: () => ({ left: 0, right: 0 }) }])
+    .map(b => b.getBoundingClientRect());
   const l = Math.min(...boxes.map(r => r.left)), r = Math.max(...boxes.map(r => r.right));
   const w = popup.offsetWidth, vw = window.innerWidth;
   const coverLeft = Math.max(0, Math.min(r, w) - l);
@@ -170,6 +172,51 @@ for (const c of document.querySelectorAll('.concept')) {
   c.addEventListener('click', () => (ids.includes(current) ? close() : open(ids[0])));
 }
 
+// The help overview: opened from the header; its names jump to their popups.
+// "area#item" opens the area's popup with that entry expanded and in view.
+document.getElementById('help-all').addEventListener('click', () => (current === 'help' ? close() : open('help')));
+// Filter chips in the help overview: any value within a row, all rows together
+function filterHelp() {
+  const active = {};
+  for (const c of body.querySelectorAll('.chip[aria-pressed="true"]')) {
+    (active[c.dataset.dim] ||= []).push(c.dataset.val);
+  }
+  const asks = [...body.querySelectorAll('.overview li[data-time]')];
+  let shown = 0;
+  for (const a of asks) {
+    a.hidden = !Object.entries(active).every(([dim, vals]) =>
+      a.dataset[dim].split(' ').some(v => vals.includes(v)));
+    if (!a.hidden) shown++;
+  }
+  // Hide areas, and circle headings, left without a matching ask
+  for (const list of body.querySelectorAll('ul.overview')) {
+    for (const area of list.children) {
+      area.hidden = !area.querySelector('li[data-time]:not([hidden])');
+    }
+    list.previousElementSibling.hidden = ![...list.children].some(area => !area.hidden);
+  }
+  body.querySelector('.fcount').textContent = Object.keys(active).length
+    ? `${shown} of ${asks.length} asks match` + (shown ? '' : ', try fewer filters') : '';
+}
+
+body.addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (chip) {
+    chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    filterHelp();
+    return;
+  }
+  const link = e.target.closest('.goto');
+  if (!link) return;
+  const [area, item] = link.dataset.open.split('#');
+  open(area);
+  if (item) {
+    const entry = document.getElementById(item);
+    entry.open = true;
+    popup.scrollTop = entry.offsetTop - document.getElementById('popup-head').offsetHeight - 8;
+  }
+});
+
 document.getElementById('close').addEventListener('click', close);
 const ORDER = [...new Set([...AREAS, ...LINK_LABELS].map(a => a[0]))];
 function step(dir) {
@@ -184,7 +231,9 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'ArrowRight') step(1);
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-// Any click outside the popup closes it; clicks on clickable areas are handled by their own toggle
+// Any click outside the popup closes it; clicks on clickable areas are handled by their own toggle.
+// A link in the popup that opened another popup has been replaced by then (not connected).
 document.addEventListener('click', e => {
-  if (current && !popup.contains(e.target) && !e.target.closest('.hs, .link, .concept')) close();
+  if (current && e.target.isConnected && !popup.contains(e.target)
+      && !e.target.closest('.hs, .link, .concept, #help-all')) close();
 });
