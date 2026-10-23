@@ -264,14 +264,12 @@ body.intro #cycle-row { opacity: 0; pointer-events: none; visibility: hidden; tr
 #popup .help ul { margin: .4rem 0; padding-left: 1.1rem; }
 #popup .help li, #popup .items .help li { margin: .25rem 0; padding: 0; border: 0; font-size: .85rem; }
 /* Little link to a person's Basecamp profile, after their name */
-#popup a.bcp {
+#popup .bcp {
   display: inline-flex; align-items: center; justify-content: center;
   width: 1.15em; height: 1.15em; margin: 0 .1em 0 .2em; vertical-align: -.15em;
   border-radius: 50%; background: var(--gold); color: var(--forest); box-shadow: 0 0 0 1.5px var(--forest);
-  text-decoration: none; transition: background .15s, color .15s;
 }
-#popup a.bcp svg { width: .7em; height: .7em; fill: currentColor; }
-#popup a.bcp:hover, #popup a.bcp:focus-visible { background: var(--forest); color: var(--soft-white); }
+#popup .bcp svg { width: .7em; height: .7em; fill: currentColor; }
 
 /* Category labels on each help ask */
 #popup .tags { display: flex; flex-wrap: wrap; gap: .25rem; margin-top: .2rem; }

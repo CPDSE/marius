@@ -162,8 +162,7 @@ def link_people(body, people):
 
     def icon(pid):
         label = html.escape(f'{full[pid]} on Basecamp')
-        return (f'<a class="bcp" href="{PROFILE_URL.format(pid)}" target="_blank" rel="noopener" '
-                f'title="{label}" aria-label="{label}">{PERSON_ICON}</a>')
+        return (f'<span class="bcp" title="{label}" aria-label="{label}">{PERSON_ICON}</span>')
 
     names = re.compile(r'(?<![\w-])(' + '|'.join(re.escape(n) for n in sorted(people, key=len, reverse=True))
                        + r')(?![\w-])')
