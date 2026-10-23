@@ -212,6 +212,30 @@ for (const c of document.querySelectorAll('.concept')) {
 // The help overview: opened from the header; its names jump to their popups.
 // "area#item" opens the area's popup with that entry expanded and in view.
 document.getElementById('help-all').addEventListener('click', () => (current === 'help' ? close() : open('help')));
+
+// Feedback form, delivered by Formspree. Paste your form's endpoint (https://formspree.io/f/xxxxxxxx) here.
+const FEEDBACK_URL = '';
+const fbDialog = document.getElementById('fb-dialog'), fbForm = document.getElementById('fb-form');
+const fbStatus = document.getElementById('fb-status'), fbSend = document.getElementById('fb-send');
+document.getElementById('feedback').addEventListener('click', () => {
+  fbStatus.textContent = ''; fbSend.disabled = false; fbForm.reset(); fbDialog.showModal();
+});
+document.getElementById('fb-cancel').addEventListener('click', () => fbDialog.close());
+fbDialog.addEventListener('click', e => { if (e.target === fbDialog) fbDialog.close(); });
+fbForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!FEEDBACK_URL) { fbStatus.textContent = 'Feedback is not set up yet.'; return; }
+  fbSend.disabled = true; fbStatus.textContent = 'Sending…';
+  try {
+    const r = await fetch(FEEDBACK_URL, { method: 'POST', body: new FormData(fbForm), headers: { Accept: 'application/json' } });
+    if (!r.ok) throw new Error(r.status);
+    fbStatus.textContent = 'Thank you for your feedback!';
+    fbForm.reset();
+  } catch {
+    fbStatus.textContent = 'Something went wrong. Please try again later.';
+    fbSend.disabled = false;
+  }
+});
 // Filter chips in the help overview: any value within a row, all rows together
 function filterHelp() {
   const active = {};
@@ -275,5 +299,5 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 // A link in the popup that opened another popup has been replaced by then (not connected).
 document.addEventListener('click', e => {
   if (current && e.target.isConnected && !popup.contains(e.target)
-      && !e.target.closest('.hs, .link, .concept, .cycle, #help-all')) close();
+      && !e.target.closest('.hs, .link, .concept, .cycle, #help-all, #feedback')) close();
 });
