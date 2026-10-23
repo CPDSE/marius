@@ -76,7 +76,7 @@ for (const [id, x, y, w, h] of HOTSPOTS) {
   b.style.top = pct(y, PIC.h);
   b.style.width = pct(w, PIC.w);
   b.style.height = pct(h, PIC.h);
-  b.addEventListener('click', () => open(id));
+  b.addEventListener('click', () => (current === id ? close() : open(id)));
   // Connected hotspots share an id and highlight together
   (groups[id] ||= []).push(b);
   b.addEventListener('mouseenter', () => setClass(id, 'hover', true));
