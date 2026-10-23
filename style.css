@@ -89,7 +89,6 @@ body { background: var(--ivory); }
 .label.link:hover, .label.link.hover { text-decoration: underline; }
 /* Service names beside the red blood cells, in the cells' dark red */
 .label.svc { color: #7A1F1F; }
-#arrow { overflow: visible; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .label {
   position: absolute;
   transform: translate(-50%, -50%);
