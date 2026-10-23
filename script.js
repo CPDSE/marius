@@ -312,8 +312,10 @@ body.addEventListener('click', e => {
 });
 
 document.getElementById('close').addEventListener('click', close);
-// Picture order first, then anything only in the diagram (the mission)
-const ORDER = [...new Set([...AREAS, ...LINK_LABELS].map(a => a[0])
+// Order of the caption text (the diagram wording includes the mission), then anything not named there
+const ORDER = [...new Set([...document.querySelectorAll('#caption .for-diagram .concept')]
+  .flatMap(b => b.dataset.ids.split(' '))
+  .concat([...AREAS, ...LINK_LABELS].map(a => a[0]))
   .concat([...document.querySelectorAll('#diagram [data-id]')].map(n => n.dataset.id)))];
 function step(dir) {
   const i = ORDER.indexOf(current);
