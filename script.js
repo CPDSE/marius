@@ -20,9 +20,22 @@ const AREAS = [
   ['rg', 'M4235744 5610921a1100000 520000 0 1 0 2200000 0a1100000 520000 0 1 0 -2200000 0Z'],
 ];
 
+// Faint nuclei drawn into the research-group cells, so they read as cells:
+// [centre x, centre y, radius x, radius y, light?], placed clear of each cell's label;
+// light ones sit on the dark green cells
+const NUCLEI = [
+  [ 450000, 2280000, 230000, 180000],  // Disease & target biology
+  [3560000,  640000, 230000, 180000],  // Molecular design & modalities
+  [5470000, 2150000, 150000, 120000, true],  // Formulation & materials (green)
+  [5660000, 3960000, 150000, 120000, true],  // Pharmacometrics & clinical pharmacology (green)
+  [3250000, 5960000, 210000, 160000],  // Real-world evidence & drug safety
+  [1060000, 6250000, 220000, 170000],  // Pharma data-science education
+  [ 330000, 4150000, 200000, 160000],  // the unlabelled grey cell
+];
+
 // Slide text boxes that sat inside the circles: [html, x, y, w, h, pt, color]
 const LABELS = [
-  ['Nucleus',                          2864583, 3121223,  857927, 307777, 14, '#3C5E3E'],
+  ['Nucleus',                          2864583, 3121223,  857927, 307777, 11, '#3C5E3E'],
   ['Cytoskeleton /<br>Fundamentals',   3916224, 3315944, 1239442, 461665, 12, '#3C5E3E'],
   // Research themes, centred where the slide's "Research Group" boxes sat (w = h = 0)
   ['Disease &amp;<br>Target Biology',                 549989, 1666008, 0, 0, 11, '#3C5E3E'],
@@ -40,7 +53,7 @@ const LINK_LABELS = [
   ['sv02', 'Research Project<br>Consulting',          7116018,  330000, 10, 'svc'],
   ['sv03', 'Research Group<br>Strategy Consulting',   7662027, 1830000, 10, 'svc'],
   ['sv04', 'People<br>Development',                   9598337, 2660000, 10, 'svc'],
-  ['rg', 'ECM /<br>PharmaDataScience<br>Research Community', 5335744, 5610921, 12, 'rgl'],
+  ['rg', 'PharmaData<br>Research Community',          5335744, 5610921, 15, 'rgl'],
 ];
 
 // Slide text that is not clickable: [html, x, y, w, h, pt]
@@ -143,6 +156,17 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 const areaLayer = document.getElementById('areas');
 areaLayer.setAttribute('viewBox', `${PIC.x} 0 ${PIC.w} ${PIC.h}`);
 glowLayer.setAttribute('viewBox', `${PIC.x} 0 ${PIC.w} ${PIC.h}`);
+const nucleusLayer = document.getElementById('nuclei');
+nucleusLayer.setAttribute('viewBox', `${PIC.x} 0 ${PIC.w} ${PIC.h}`);
+for (const [cx, cy, rx, ry, light] of NUCLEI) {
+  const n = document.createElementNS(SVG_NS, 'ellipse');
+  Object.entries({ cx, cy, rx, ry, class: light ? 'nuc light' : 'nuc' }).forEach(([k, v]) => n.setAttribute(k, v));
+  nucleusLayer.appendChild(n);
+  const dot = document.createElementNS(SVG_NS, 'circle');
+  Object.entries({ cx: cx + rx * .25, cy: cy - ry * .15, r: ry * .3, class: light ? 'nucleolus light' : 'nucleolus' })
+    .forEach(([k, v]) => dot.setAttribute(k, v));
+  nucleusLayer.appendChild(dot);
+}
 const pct = (v, total) => (v / total * 100) + '%';
 
 // A clickable element of the picture or the diagram that opens popup `id`.
