@@ -10,7 +10,9 @@ Each circle, service and Fundamental area has:
 
 Each ask under **Wanna help?** ends with a tag such as
 `{skill: coding, writing; interest: education; time: hours}`, used to filter the help overview
-on the website. Allowed values are listed in CATEGORIES in `build_content.py`.
+on the website. Allowed values are listed in CATEGORIES in `build_content.py`. After the asks, a
+`**Contact:**` line names the people who lead or own the area; each gets an "Email" button
+(addresses in `people.json`), with the Basecamp link as a small secondary link.
 
 IDs match the spreadsheet so the text can be copied back. Sources: the WoW 2.0 pages
 in `cpdse-okf-vault` (Season 4, Sept 2026) and the circle and service projects in
@@ -68,6 +70,8 @@ science and AI. Talk to Lykke (UCPH) or Sebastian (SDU). Open asks right now:
 - Network with other data-science centres about computational teaching infrastructure. {skill: organising; interest: education, tech; time: hours}
 - Sign up to help improve the R documentation page that courses link to. {skill: coding, writing; interest: education; time: hours}
 
+**Contact:** Lykke Pedersen, Sebastian Jakobsen
+
 Leads: Lykke Pedersen (UCPH), Sebastian Jakobsen (SDU). Advisory board: Curriculum
 Transformation Board.
 Basecamp: [WS:Curriculum upgrade](https://3.basecamp.com/6021648/projects/43870052)
@@ -90,6 +94,8 @@ that researchers can do analyses, models and visualisations they could not do al
 for you. And if your own project needs a data scientist, this is where to start. Get in touch
 with Arnault.
 - Help a research project with an analysis, a model or a visualisation. {skill: coding; interest: research; time: days}
+
+**Contact:** Arnault-Quentin Vermillet
 
 Lead: Arnault-Quentin Vermillet (with Sarah Mittenentzwei at SDU later, if needed).
 Advisory board: Institutional Advisory Board.
@@ -116,6 +122,8 @@ pipelines to hiring. Interested in joining a strategy conversation, or would you
 like one? Get in touch with Morten.
 - Join a conversation with a research group about its data-science strategy. {skill: organising; interest: research; time: hours}
 
+**Contact:** Morten Lindow
+
 Lead: Morten Lindow. Advisory board: Institutional Advisory Board.
 Basecamp: [WS:Research Group Strategy Consulting](https://3.basecamp.com/6021648/projects/48628172)
 *Open: the spreadsheet notes "output format not specified". It is still undecided
@@ -140,6 +148,8 @@ right now:
 - Organise a GitHub training event for teachers. {skill: teaching, organising; interest: education, tech; time: days}
 - Organise a uCloud training event for teachers. {skill: teaching, organising; interest: education, tech; time: days}
 
+**Contact:** Jacob Fredegaard Hansen
+
 Lead: Jacob Fredegaard Hansen. Advisory board: Institutional Advisory Board.
 Basecamp: [WS:People development](https://3.basecamp.com/6021648/projects/48628170)
 
@@ -162,6 +172,8 @@ work instead of the friction around it.
 **Wanna help?** Every area above has an owner who would love a helper, and most need
 only a few hours. Pick something that sounds fun, sign up as a helper on the Basecamp to-do,
 or talk to the owner. If something is missing, add it.
+
+**Contact:** Lykke Pedersen
 
 Staffed by the Nucleus and volunteers.
 Basecamp: [Circle:Fundamental](https://3.basecamp.com/6021648/projects/48628160)
@@ -194,6 +206,8 @@ so that the centre keeps learning and its services rest on a shared foundation.
 - Join the hackathon crew (Philipp). {skill: coding, organising; interest: education, community; time: days}
 - Help improve and apply CPDSE's core models (Morten). {skill: writing; interest: education; time: ongoing}
 
+**Contact:** Finn Kollerup, Arnault-Quentin Vermillet, Philipp Hans, Morten Lindow
+
 Basecamp: [Education and development to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249028248)
 
 ### Center rhythms, spaces and culture (`FU02`)
@@ -214,6 +228,8 @@ together, so that people across institutions know each other and want to work to
 - Bring ideas for CPDSE Connect sessions, or for an escape-room event (Jeppe). {skill: curious; interest: community; time: hours}
 - Show CPDSE's progress on posters or screens in our UCPH spaces (Jeppe), or help
   furnish the SDU space (Cecilie). {skill: design; interest: community; time: hours}
+
+**Contact:** Lykke Pedersen, Jeppe Hartmann, Cecilie Greve Jensen
 
 Basecamp: [Community & Engagement to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249026942)
 
@@ -239,6 +255,8 @@ so that members can work with data and with each other without technical barrier
 - Write a GitHub 101 on how to access CPDSE materials (Sarah). {skill: coding, writing; interest: tech, education; time: hours}
 - Join one of the AI strategy sub-groups (Sarah). {skill: curious; interest: tech; time: ongoing}
 
+**Contact:** Arnault-Quentin Vermillet, Kasper Harpsøe, Sarah Mittenentzwei
+
 Basecamp: [Infrastructure & Tools to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249025835)
 
 ### Communication and social media (`FU04`)
@@ -259,6 +277,8 @@ informed and partners, students and the wider field know what CPDSE offers.
 - Help visualise WoW 2.0 and the tissue picture, for example as a booklet (Jeppe). {skill: design, writing; interest: outreach, community; time: days}
 - Have an idea for the website? Open a to-do for it (Sarah). {skill: curious; interest: outreach; time: hours}
 
+**Contact:** Jacob Fredegaard Hansen, Jeppe Hartmann, Sarah Mittenentzwei
+
 Basecamp: [Comms & SoMe to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249025188)
 
 ### Onboarding (`FU05`)
@@ -277,6 +297,8 @@ Open asks right now:
 - Build the onboarding plans for new PhD students and new members, from preboarding to
   the first three months (Jeppe). {skill: organising, writing; interest: community; time: days}
 - Help work out how we find out who is joining CPDSE (Karlis). {skill: organising; interest: community; time: hours}
+
+**Contact:** Jeppe Hartmann, Karlis Berzins
 
 Basecamp: [Onboarding to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249024555)
 
@@ -299,6 +321,8 @@ moves as one.
 **Wanna help?** Curious how the pieces fit together? Join a weekly check-in or a
 sprint, or talk to Lykke.
 - Join a weekly Nucleus check-in to see how the circles work together. {skill: curious; interest: community; time: ongoing}
+
+**Contact:** Lykke Pedersen
 
 Members: CPDSE's full-time staff and research group leaders. Lead: Lykke Pedersen
 (as portfolio lead). Meets weekly.
@@ -334,6 +358,8 @@ summer retreat:
 - Peer dialogues for PhD students (Finn). {skill: curious; interest: research, community; time: hours}
 - An infrastructure knowledge base, which still needs an owner. {skill: organising, writing; interest: research, tech; time: ongoing}
 
+**Contact:** Philipp Hans, Karlis Berzins, Jane Knöchel, Casper Steinmann
+
 Leads: Philipp Hans, Karlis Berzins, Jane Knöchel, Casper Steinmann. Main priority for
 Season 4.
 Basecamp: [Circle: Pharmaceutical Data Science Research Community](https://3.basecamp.com/6021648/projects/43870063)
@@ -359,6 +385,8 @@ targets and explain why patients respond differently to medicines.
 **Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
 one of the group leaders above, or the Research Community leads.
 
+**Contact:** Alexander S. Hauser, David Gloriam
+
 ### Molecular design and new modalities (`TH02`)
 
 **About:** We design and model new drug molecules, from small molecules to RNA-based
@@ -371,6 +399,8 @@ therapeutics, with computational chemistry and data-driven design tools.
 
 **Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
 one of the group leaders above, or the Research Community leads.
+
+**Contact:** Albert Kooistra, Jacob Kongsted, Morten Lindow
 
 ### Formulation and pharmaceutical materials (`TH03`)
 
@@ -385,6 +415,8 @@ stable, effective and can be designed with data rather than by trial and error.
 **Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
 one of the group leaders above, or the Research Community leads.
 
+**Contact:** Anders Østergård Madsen, Karlis Berzins, Judith Kuntsche
+
 ### Pharmacometrics and clinical pharmacology (`TH04`)
 
 **About:** We model how drugs and diseases behave in patients, so that dosing and
@@ -396,6 +428,8 @@ treatment can be designed for each patient population.
 
 **Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
 one of the group leaders above, or the Research Community leads.
+
+**Contact:** Jane Knöchel, Trine Meldgård Lund
 
 ### Real-world evidence and drug safety (`TH05`)
 
@@ -409,6 +443,8 @@ used in practice and to detect safety signals.
 **Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
 one of the group leaders above, or the Research Community leads.
 
+**Contact:** Anton Pottegård, Morten Andersen
+
 ### Pharma data-science education (`TH06`)
 
 **About:** We research how science is taught and learned, so that pharma educators can
@@ -419,6 +455,8 @@ build data science into teaching that works.
 
 **Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
 one of the group leaders above, or the Research Community leads.
+
+**Contact:** Hendra Augustian
 
 ---
 

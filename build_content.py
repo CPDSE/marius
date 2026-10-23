@@ -15,6 +15,7 @@ import html
 import json
 import re
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).parent
 SOURCE = ROOT / 'gateway-content.md'
@@ -88,10 +89,11 @@ def split_sections(lines):
 def parse_block(lines):
     """Return impact, responsibilities, meta text, Basecamp link, group names, help and lists of a section.
 
-    help is (intro text, [asks]) from a "**Wanna help?**" paragraph, or None.
+    help is (intro text, [asks], [contact names]) from a "**Wanna help?**" paragraph and the
+    "**Contact:**" line after it, or None.
     lists are (heading, [items]) from any other "**Heading**" paragraph followed by bullets.
     """
-    impact, resp, meta, basecamp, members, help_, lists = '', [], [], None, [], None, []
+    impact, resp, meta, basecamp, members, help_, lists, contacts = '', [], [], None, [], None, [], []
     paragraphs, para = [], []
     for line in lines + ['']:
         if line.strip() in ('', '---'):
@@ -114,6 +116,9 @@ def parse_block(lines):
                 else:
                     intro.append(line.strip())
             help_ = (' '.join(intro), asks)
+        elif first.startswith('**Contact:**'):
+            names = ' '.join(l.strip() for l in para)[len('**Contact:**'):]
+            contacts = [n.strip() for n in names.split(',') if n.strip()]
         elif re.fullmatch(r'\*\*[^*]+\*\*', first.strip()) and first.strip() not in (
                 '**Groups**', '**Responsibilities**'):
             items = []
@@ -142,6 +147,8 @@ def parse_block(lines):
             if link:
                 label = 'Basecamp project' if bc.strip().startswith('[') else 'Related Basecamp project'
                 basecamp = (label, link.group(2))
+    if help_:
+        help_ = (*help_, contacts)
     return impact, resp, ' '.join(meta), basecamp, members, help_, lists
 
 
@@ -243,15 +250,39 @@ def render_ask(ask):
     return f'<li {" ".join(attrs)}>{inline(text)}<span class="tags">{"".join(labels)}</span></li>'
 
 
-def render_help(help_, basecamp):
-    """The "Wanna help?" box ending with the Basecamp link, or just the link without help text."""
+def load_people():
+    data = json.loads(PEOPLE.read_text(encoding='utf-8')) if PEOPLE.exists() else {}
+    return data.get('people', {}), data.get('emails', {})
+
+
+PEOPLE_IDS, EMAILS = load_people()
+
+
+def render_contacts(contacts, about):
+    """The call to action: an "Email <first name>" button per contact with a university email."""
+    buttons = []
+    for name in contacts:
+        pid = PEOPLE_IDS.get(name)
+        if pid is None:
+            raise SystemExit(f'Contact "{name}" is not in {PEOPLE.name}')
+        email = EMAILS.get(str(pid))
+        if not email:
+            continue  # no university address on record: the name is still in the text
+        first = min((n for n, i in PEOPLE_IDS.items() if i == pid), key=len).split()[0]
+        subject = quote(f'I would like to help: {about}')
+        buttons.append(f'<a class="mail" href="mailto:{email}?subject={subject}">✉ Email {html.escape(first)}</a>')
+    return f'<div class="contact">{"".join(buttons)}</div>' if buttons else ''
+
+
+def render_help(help_, basecamp, about=''):
+    """The "Wanna help?" box: asks, then email buttons for the contacts, then a small Basecamp link."""
     if not help_:
         return render_basecamp(basecamp)
-    intro, asks = help_
+    intro, asks, contacts = help_
     box = f'<div class="help"><h3>Wanna help?</h3><p>{inline(intro)}</p>'
     if asks:
         box += '<ul>' + ''.join(render_ask(a) for a in asks) + '</ul>'
-    return box + render_basecamp(basecamp) + '</div>'
+    return box + render_contacts(contacts, about) + render_basecamp(basecamp) + '</div>'
 
 
 def render_filters():
@@ -278,14 +309,15 @@ def build():
             # The popup to open: its own, or its circle's with the entry expanded (area#item)
             target = (circle_area if level == 2 else
                       sid.lower() if sid.startswith(SPLIT_PREFIXES) else f'{circle_area}#{sid.lower()}')
-            intro, asks = help_
+            intro, asks, contacts = help_
             entry = (f'<li><button class="goto" data-open="{target}">{inline(title)}</button>'
                      f'<p>{inline(intro)}</p>')
             if asks:
                 entry += '<ul>' + ''.join(render_ask(a) for a in asks) + '</ul>'
-            overview.setdefault(circle_title, []).append(entry + render_basecamp(basecamp) + '</li>')
+            overview.setdefault(circle_title, []).append(
+                entry + render_contacts(contacts, title) + render_basecamp(basecamp) + '</li>')
         popup = {'title': title, 'lead': f'<p class="lead">{inline(impact)}</p>',
-                 'details': render_details(resp, meta, lists), 'help': render_help(help_, basecamp),
+                 'details': render_details(resp, meta, lists), 'help': render_help(help_, basecamp, title),
                  'children': [], 'prefix': None, 'has_resp': bool(resp)}
         if members:
             missing = [m for m in members if m not in researchers]
@@ -331,7 +363,7 @@ def build():
                 + ''.join(f'<h3>{inline(t)}</h3><ul class="items overview">{"".join(e)}</ul>'
                           for t, e in overview.items())}
 
-    people = json.loads(PEOPLE.read_text(encoding='utf-8'))['people'] if PEOPLE.exists() else {}
+    people = PEOPLE_IDS
     for popup in out.values():
         popup['body'] = link_people(popup['body'], people)
 

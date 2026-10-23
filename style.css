@@ -365,7 +365,20 @@ body.intro #cycle-row { opacity: 0; pointer-events: none; visibility: hidden; tr
 }
 #popup .goto::after { content: ' →'; }
 #popup .goto:hover, #popup .goto:focus-visible { text-decoration-style: solid; }
-#popup .help p.bc {margin-top: .6rem; padding-top: .5rem; border-top: 1px dashed var(--gold); }
+/* Call to action in help boxes: email the contact person; Basecamp is a small secondary link */
+#popup .contact { display: flex; flex-wrap: wrap; gap: .25rem; margin: .6rem 0 .2rem; }
+#popup .contact a.mail {
+  display: inline-block; padding: .1em .6em; border-radius: 999px; font-weight: bold;
+  font-size: .68rem; line-height: 1.5; background: var(--forest); color: var(--soft-white);
+  text-decoration: none; transition: background .15s;
+}
+#popup .contact a.mail:hover, #popup .contact a.mail:focus-visible { background: var(--sage); }
+#popup .help p.bc, #popup .overview p.bc { margin: .5rem 0 0; font-size: .75rem; color: var(--sage); }
+#popup .help p.bc a, #popup .overview p.bc a {
+  display: inline; padding: 0; border-radius: 0; background: none; box-shadow: none;
+  color: var(--sage); font-weight: normal; text-decoration: underline;
+}
+#popup .help p.bc a:hover, #popup .overview p.bc a:hover { background: none; color: var(--forest); transform: none; }
 
 /* Expandable services/areas: click the summary to show responsibilities */
 #popup .expand li { padding: 0; }
