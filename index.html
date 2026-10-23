@@ -14,16 +14,19 @@
     <p>Click an area to learn more</p>
     <button id="help-all" aria-label="All the ways to help">🙋 Wanna help?</button>
   </header>
-  <div id="figure">
-    <div id="paper"><img id="cell" src="cell.png" alt="Cell metaphor overview" draggable="false"></div>
-    <div id="hotspots">
-      <svg id="glow" preserveAspectRatio="none"></svg>
-      <svg id="areas" preserveAspectRatio="none"></svg>
-    </div>
-  </div>
-  <!-- data-ids: the popup(s) a concept opens and highlights, as used in script.js -->
-  <p id="caption">Think of us as living tissue. The <button class="concept" data-ids="th01 th02 th03 th04 th05 th06">research groups</button> are its foundation and bring the science, held together by the <button class="concept" data-ids="rg">research community</button>. The center is the supporting cell in the middle: its <button class="concept" data-ids="nucleus">nucleus</button> coordinates, and its <button class="concept" data-ids="cyto">fundamentals</button> give everything structure. Together we send <button class="concept" data-ids="sv01 sv02 sv03 sv04">services</button> through the bloodstream to the pharma schools and their departments at SDU and UCPH.</p>
-</main>
+  <div id="caption-row">
+    <button class="cycle" id="cap-prev" aria-label="Previous element">&#8249;</button>
+    <p id="caption">Think of us as living tissue. The <button class="concept" data-ids="th01 th02 th03 th04 th05 th06">research groups</button> are its foundation and bring the science, held together by the <button class="concept" data-ids="rg">research community</button>. The center is the supporting cell in the middle: its <button class="concept" data-ids="nucleus">nucleus</button> coordinates, and its <button class="concept" data-ids="cyto">fundamentals</button> give everything structure. Together we send <button class="concept" data-ids="sv01 sv02 sv03 sv04">services</button> through the bloodstream to the pharma schools and their departments at SDU and UCPH.</p>
+        <button class="cycle" id="cap-next" aria-label="Next element">&#8250;</button>
+      </div>
+      <div id="figure">
+        <div id="paper"><img id="cell" src="cell.png" alt="Cell metaphor overview" draggable="false"></div>
+        <div id="hotspots">
+          <svg id="glow" preserveAspectRatio="none"></svg>
+          <svg id="areas" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+    </main>
 
 <aside id="popup" aria-hidden="true">
   <div id="popup-head">

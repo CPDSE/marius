@@ -221,10 +221,13 @@ document.getElementById('close').addEventListener('click', close);
 const ORDER = [...new Set([...AREAS, ...LINK_LABELS].map(a => a[0]))];
 function step(dir) {
   const i = ORDER.indexOf(current);
+  if (i < 0) return open(ORDER[dir > 0 ? 0 : ORDER.length - 1]);
   open(ORDER[(i + dir + ORDER.length) % ORDER.length]);
 }
 document.getElementById('prev').addEventListener('click', () => step(-1));
 document.getElementById('next').addEventListener('click', () => step(1));
+document.getElementById('cap-prev').addEventListener('click', () => step(-1));
+document.getElementById('cap-next').addEventListener('click', () => step(1));
 document.addEventListener('keydown', e => {
   if (!current) return;
   if (e.key === 'ArrowLeft') step(-1);
@@ -235,5 +238,5 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 // A link in the popup that opened another popup has been replaced by then (not connected).
 document.addEventListener('click', e => {
   if (current && e.target.isConnected && !popup.contains(e.target)
-      && !e.target.closest('.hs, .link, .concept, #help-all')) close();
+      && !e.target.closest('.hs, .link, .concept, .cycle, #help-all')) close();
 });

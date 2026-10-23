@@ -38,17 +38,27 @@ body { background: var(--ivory); }
   aspect-ratio: 10111081 / 6858000;
   width: min(100%, calc((100vh - 9.5rem) * 10111081 / 6858000));
 }
-/* Explanation of the metaphor under the picture; its height is reserved above */
-#caption {
+/* Explanation of the metaphor above the picture, flanked by arrows that cycle through the areas */
+#caption-row {
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
   width: min(100%, calc((100vh - 9.5rem) * 10111081 / 6858000));
-  max-width: 60rem;
-  margin: .6rem 0 0;
+  margin: 0 0 .5rem;
+}
+#caption {
+  flex: 1; max-width: 60rem;
+  margin: 0;
   text-align: center;
   font-style: italic;
   font-size: clamp(.7rem, 1.6vh, .95rem);
   line-height: 1.45;
   color: var(--forest);
 }
+.cycle {
+  flex: none; width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid var(--gold);
+  background: var(--soft-white); color: var(--forest); font-size: 1.5rem; line-height: 1;
+  padding: 0 0 .15rem; cursor: pointer; transition: background .15s;
+}
+.cycle:hover, .cycle:focus-visible { background: var(--sand); }
 /* Caption words linked to areas of the picture; highlighted together with them */
 #caption .concept {
   font: inherit; color: var(--forest); font-weight: bold;
@@ -180,7 +190,12 @@ body { background: var(--ivory); }
 #popup .resp li, #popup .items .resp li { margin: .3rem 0; padding: 0; border: 0; font-size: .85rem; }
 #popup p.meta { font-size: .8rem; color: var(--sage); font-style: italic; margin: .6rem 0 .3rem; }
 #popup p.bc { font-size: .8rem; margin: .3rem 0; }
-#popup p.bc a { font-weight: bold; }
+#popup p.bc a {
+  display: inline-block; padding: .45em .9em; border-radius: 999px; font-weight: bold;
+  background: var(--forest); color: var(--soft-white); text-decoration: none;
+  box-shadow: 0 2px 0 var(--gold); transition: background .15s, transform .1s;
+}
+#popup p.bc a:hover, #popup p.bc a:focus-visible { background: var(--sage); transform: translateY(-1px); }
 
 /* "Wanna help?" invitation at the end of a popup or expanded entry */
 #popup .help {
@@ -197,7 +212,7 @@ body { background: var(--ivory); }
 #popup a.bcp {
   display: inline-flex; align-items: center; justify-content: center;
   width: 1.15em; height: 1.15em; margin: 0 .1em 0 .2em; vertical-align: -.15em;
-  border-radius: 50%; background: var(--mint); color: var(--forest);
+  border-radius: 50%; background: var(--gold); color: var(--forest); box-shadow: 0 0 0 1.5px var(--forest);
   text-decoration: none; transition: background .15s, color .15s;
 }
 #popup a.bcp svg { width: .7em; height: .7em; fill: currentColor; }
