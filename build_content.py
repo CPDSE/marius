@@ -3,7 +3,8 @@
 Run after editing the markdown:  python3 build_content.py
 
 Each "## Circle (`ID`)" becomes a popup; its "### Item (`ID`)" sections become
-expandable entries inside it. Editorial notes in the markdown (italic lines,
+expandable entries inside it. The Services circle has no popup of its own:
+each service gets one instead (one per red blood cell). Editorial notes in the markdown (italic lines,
 "> " blockquotes, "(inferred)" markers, the "Open points" section) are left out.
 """
 import html
@@ -16,9 +17,10 @@ SOURCE = ROOT / 'gateway-content.md'
 RESEARCH_GROUPS = ROOT / 'research-groups.html'
 TARGET = ROOT / 'content.js'
 
-# Spreadsheet circle id -> clickable area id in script.js
+# Spreadsheet circle id -> clickable area id in script.js.
+# None: the circle's items each get their own popup, keyed by lowercased id (e.g. sv01).
 AREA_IDS = {
-    'CIR_SERVICES': 'er',
+    'CIR_SERVICES': None,
     'CIR_FUNDAMENTAL': 'cyto',
     'CIR_NUCLEUS': 'nucleus',
     'CIR_RESEARCH': 'rg',
@@ -105,17 +107,18 @@ def render_details(impact, resp, meta, basecamp):
 
 def build():
     lines = SOURCE.read_text(encoding='utf-8').splitlines()
-    content, circle = {}, None
+    content, circle, split = {}, None, False
     for level, title, sid, body in split_sections(lines):
         impact, resp, meta, basecamp = parse_block(body)
+        popup = {'title': title, 'lead': f'<p class="lead">{inline(impact)}</p>',
+                 'details': render_details(impact, resp, meta, basecamp),
+                 'children': [], 'prefix': None}
         if level == 2:
-            if sid not in AREA_IDS:
-                circle = None
-                continue
-            circle = {'title': title, 'lead': f'<p class="lead">{inline(impact)}</p>',
-                      'details': render_details(impact, resp, meta, basecamp),
-                      'children': [], 'prefix': None}
-            content[AREA_IDS[sid]] = circle
+            circle, split = None, AREA_IDS.get(sid, '') is None
+            if AREA_IDS.get(sid):
+                circle = content[AREA_IDS[sid]] = popup
+        elif split:
+            content[sid.lower()] = popup
         elif circle is not None:
             circle['prefix'] = circle['prefix'] or sid[:2]
             circle['children'].append(

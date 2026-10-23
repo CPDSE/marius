@@ -2,7 +2,11 @@
 // The picture sits at x = -52681 and is 10111081 x 6858000 EMU.
 const PIC = { x: -52681, w: 10111081, h: 6858000 };
 const AREAS = [
-  ['er', 'M2616941 2672774C2583869 2506435 2715700 1947040 2746639 1707563L4177585 1735024C4129424 1922630 4108545 2192526 4032951 2297840C4032494 2537317 3986315 2630519 3958272 2751089C3770812 2723720 3510196 2623029 3286158 2559045C3063035 2596955 2785198 2708002 2616941 2672774Z'],
+  // The four services, one per red blood cell (ellipses traced from cell.png)
+  ['sv01', 'M5943110 881534a323560 236811 0 1 0 647120 0a323560 236811 0 1 0 -647120 0Z'],
+  ['sv02', 'M6822791 716795a293227 226514 0 1 0 586454 0a293227 226514 0 1 0 -586454 0Z'],
+  ['sv03', 'M7378911 1447820a283116 205922 0 1 0 566232 0a283116 205922 0 1 0 -566232 0Z'],
+  ['sv04', 'M9360722 2271509a237615 216218 0 1 0 475230 0a237615 216218 0 1 0 -475230 0Z'],
   ['cyto', 'M3913632 3600772a577444 725504 0 1 0 1154888 0a577444 725504 0 1 0 -1154888 0Z'],
   ['nucleus', 'M2817110 3259330C2822453 3115706 2782384 3026900 2650602 2901548C2828431 2746107 2932865 2636348 3339278 2636470C3667842 2734291 3795172 2695187 3968168 3204512C3843891 3677291 3874928 3701899 3622685 3854660C3243748 4031419 2938080 3906555 2677951 3726750C2632921 3589216 2816347 3424273 2817110 3259330Z'],
   ['rg', 'M2048156 1048858C2201178 812094 1942565 392378 2415559 292777C3203443 317044 3341783 -24173 3672672 91571C3920180 352812 3783721 540830 4067555 994098C3652533 1215668 3996032 1144555 3151306 1064367L2497622 1283827C2347800 1205539 2079024 1072281 2048156 1048858Z'],
@@ -16,13 +20,20 @@ const AREAS = [
 // Slide text boxes that sat inside the circles: [html, x, y, w, h, pt, color]
 const LABELS = [
   ['Nucleus',                          2864583, 3121223,  857927, 307777, 14, '#3C5E3E'],
-  ['Endoplasmatic<br>Reticulum /<br>Services',2683896, 1695597, 1519968, 276999, 12, '#3C5E3E'],
   ['Research<br>Group',                 113812, 1435176,  872355, 461665, 12, '#3C5E3E'],
   ['Research<br>Group',                2472702,  443380,  872355, 461665, 12, '#3C5E3E'],
   ['Research<br>Group',                 251222, 5619930,  872355, 461665, 12, '#3C5E3E'],
   ['Research<br>Group',                2381973, 5907294,  872355, 461665, 12, '#3C5E3E'],
   ['Cytoskeleton /<br>Fundamentals',   3916224, 3315944, 1239442, 461665, 12, '#3C5E3E'],
   ['Research<br>Group',                5340033, 4679589,  872355, 461665, 12, '#3C5E3E'],
+];
+
+// Clickable service names beside their blood cells: [id, html, centre x, centre y, pt]
+const SERVICE_LABELS = [
+  ['sv01', 'Curriculum<br>Upgrade',                   6266670, 1290000, 10],
+  ['sv02', 'Research Project<br>Consulting',          7116018,  330000, 10],
+  ['sv03', 'Research Group<br>Strategy Consulting',   7662027, 1830000, 10],
+  ['sv04', 'People<br>Development',                   9598337, 2660000, 10],
 ];
 
 // Slide text that is not clickable: [html, x, y, w, h, pt]
@@ -107,6 +118,21 @@ for (const [html, x, y, w, h, pt, color] of LABELS) {
   document.getElementById('hotspots').appendChild(l);
 }
 
+for (const [id, html, x, y, pt] of SERVICE_LABELS) {
+  const l = document.createElement('div');
+  l.className = 'label svc';
+  l.innerHTML = html;
+  l.style.left = pct(x - PIC.x, PIC.w);
+  l.style.top = pct(y, PIC.h);
+  l.style.fontSize = `${pt / 796.1 * 100}cqw`;
+  // The cells are small, so the name opens the service too; it is not focusable
+  // because the cell itself already is.
+  l.addEventListener('click', () => (current === id ? close() : open(id)));
+  l.addEventListener('mouseenter', () => setClass(id, 'hover', true));
+  l.addEventListener('mouseleave', () => setClass(id, 'hover', false));
+  document.getElementById('hotspots').appendChild(l);
+}
+
 for (const [html, x, y, w, h, pt] of STATIC_LABELS) {
   const l = document.createElement('div');
   l.className = 'label static';
@@ -133,5 +159,5 @@ document.addEventListener('keydown', e => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 // Any click outside the popup closes it; clicks on clickable areas are handled by their own toggle
 document.addEventListener('click', e => {
-  if (current && !popup.contains(e.target) && !e.target.closest('.hs')) close();
+  if (current && !popup.contains(e.target) && !e.target.closest('.hs, .svc')) close();
 });
