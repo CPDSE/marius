@@ -76,12 +76,14 @@ function layoutIntro() {
   if (!document.body.classList.contains('intro')) return;
   const row = document.getElementById('caption-row'), cyc = document.getElementById('cycle-row');
   const fig = document.getElementById('figure'), btn = document.getElementById('start');
-  const S = 1.25, GAP = 16;
+  const S = 1.5, GAP = 16;
   const capH = row.offsetHeight * S, groupH = capH + GAP + btn.offsetHeight;
-  const figTop = fig.getBoundingClientRect().top, figH = fig.offsetHeight;
-  const capTop = cyc.getBoundingClientRect().top - parseFloat(getComputedStyle(row).marginBottom) - row.offsetHeight;
-  const groupTop = figTop + (figH - groupH) / 2;
-  document.body.style.setProperty('--intro-y', (groupTop - capTop) + 'px');
+  const head = document.getElementById('title'), figH = fig.offsetHeight;
+  // Lift the picture to just under the header; it slides back down when the intro ends
+  const up = Math.max(0, fig.offsetTop - (head.offsetTop + head.offsetHeight + 12));
+  const groupTop = fig.offsetTop - up + (figH - groupH) / 2;
+  document.body.style.setProperty('--fig-up', up + 'px');
+  document.body.style.setProperty('--intro-y', (groupTop - row.offsetTop) + 'px');
   document.body.style.setProperty('--start-y', ((figH - groupH) / 2 + capH + GAP) + 'px');
 }
 window.addEventListener('resize', layoutIntro);

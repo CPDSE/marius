@@ -72,9 +72,11 @@ body.intro #start { display: block; text-align: center; }
 /* Intro: caption is enlarged and centred with the start button over the blurred picture; Start moves it up and shrinks it.
    --intro-y and --start-y are set in script.js so the caption + button group is centred on the picture. */
 #caption-row { position: relative; z-index: 4; transform-origin: top center; transition: transform .8s ease; }
-#caption { padding-inline: 0; transition: padding .8s ease; }
-body.intro #caption-row { transform: translateY(var(--intro-y, 3rem)) scale(1.25); }
-body.intro #caption { padding-inline: 13%; text-shadow: 0 0 6px var(--ivory), 0 0 10px var(--ivory), 0 0 14px var(--ivory); }
+#figure { transition: transform .8s ease; }
+body.intro #figure { transform: translateY(calc(-1 * var(--fig-up, 0px))); }
+#caption { transition: max-width .8s ease, padding .8s ease, background-color .8s ease; border-radius: .6rem; }
+body.intro #caption-row { transform: translateY(var(--intro-y, 3rem)) scale(1.5); }
+body.intro #caption { max-width: 64%; padding: .7rem 1rem; background: var(--ivory); }
 body.intro #cycle-row { opacity: 0; pointer-events: none; visibility: hidden; transition: none; }
 .cycle {
   flex: none; height: 2rem; border-radius: 999px; border: 2px solid var(--forest);
