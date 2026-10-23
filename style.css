@@ -43,7 +43,7 @@ body { background: var(--ivory); }
 #figure #paper, #figure #hotspots { transition: filter .6s ease, opacity .6s ease; }
 body.intro #figure #paper, body.intro #figure #hotspots { filter: blur(14px); opacity: .7; pointer-events: none; }
 #start {
-  display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3;
+  display: none; position: absolute; left: 50%; top: var(--start-y, 50%); transform: translateX(-50%); z-index: 3;
   font: inherit; font-size: clamp(1rem, 2.6vh, 1.4rem); font-weight: bold; letter-spacing: .05em;
   color: var(--forest); background: var(--gold); border: 3px solid var(--forest); border-radius: 999px;
   padding: .7em 2em; cursor: pointer; box-shadow: 0 4px 18px rgba(0, 0, 0, .3);
@@ -51,7 +51,7 @@ body.intro #figure #paper, body.intro #figure #hotspots { filter: blur(14px); op
 }
 body.intro #start { display: block; text-align: center; }
 #start small { display: block; margin-top: .3em; font-size: .6em; font-weight: normal; letter-spacing: 0; }
-#start:hover, #start:focus-visible { background: var(--sand); transform: translate(-50%, -50%) scale(1.05); }
+#start:hover, #start:focus-visible { background: var(--sand); transform: translateX(-50%) scale(1.05); }
 /* Explanation of the metaphor above the picture, flanked by arrows that cycle through the areas */
 #caption-row {
   display: flex; align-items: center; justify-content: center; gap: .6rem;
@@ -68,7 +68,14 @@ body.intro #start { display: block; text-align: center; }
   line-height: 1.45;
   color: var(--forest);
 }
-#cycle-row { display: flex; justify-content: center; gap: 1rem; margin: 0 0 .5rem; }
+#cycle-row { display: flex; justify-content: center; gap: 1rem; margin: 0 0 .5rem; transition: opacity .4s ease .9s, visibility 0s linear .9s; }
+/* Intro: caption is enlarged and centred with the start button over the blurred picture; Start moves it up and shrinks it.
+   --intro-y and --start-y are set in script.js so the caption + button group is centred on the picture. */
+#caption-row { position: relative; z-index: 4; transform-origin: top center; transition: transform .8s ease; }
+#caption { padding-inline: 0; transition: padding .8s ease; }
+body.intro #caption-row { transform: translateY(var(--intro-y, 3rem)) scale(1.25); }
+body.intro #caption { padding-inline: 13%; text-shadow: 0 0 6px var(--ivory), 0 0 10px var(--ivory), 0 0 14px var(--ivory); }
+body.intro #cycle-row { opacity: 0; pointer-events: none; visibility: hidden; transition: none; }
 .cycle {
   flex: none; height: 2rem; border-radius: 999px; border: 2px solid var(--forest);
   background: var(--gold); color: var(--forest); font: inherit; font-size: clamp(.75rem, 1.7vh, .9rem); font-weight: bold;

@@ -71,6 +71,22 @@ new ResizeObserver(syncHeader).observe(header);
 syncHeader();
 const cycleBtns = document.querySelectorAll('.cycle');
 cycleBtns.forEach(b => b.disabled = true);
+// Centre the enlarged caption and the start button as one group over the blurred picture
+function layoutIntro() {
+  if (!document.body.classList.contains('intro')) return;
+  const row = document.getElementById('caption-row'), cyc = document.getElementById('cycle-row');
+  const fig = document.getElementById('figure'), btn = document.getElementById('start');
+  const S = 1.25, GAP = 16;
+  const capH = row.offsetHeight * S, groupH = capH + GAP + btn.offsetHeight;
+  const figTop = fig.getBoundingClientRect().top, figH = fig.offsetHeight;
+  const capTop = cyc.getBoundingClientRect().top - parseFloat(getComputedStyle(row).marginBottom) - row.offsetHeight;
+  const groupTop = figTop + (figH - groupH) / 2;
+  document.body.style.setProperty('--intro-y', (groupTop - capTop) + 'px');
+  document.body.style.setProperty('--start-y', ((figH - groupH) / 2 + capH + GAP) + 'px');
+}
+window.addEventListener('resize', layoutIntro);
+window.addEventListener('load', layoutIntro);
+layoutIntro();
 function start() {
   document.body.classList.remove('intro');
   cycleBtns.forEach(b => b.disabled = false);
