@@ -123,6 +123,27 @@ body { background: var(--ivory); }
 #popup .items strong { display: block; color: var(--forest); }
 #popup .items .meta { display: block; font-size: .8rem; color: var(--sage); font-style: italic; }
 #popup a { color: var(--forest); }
+#popup .resp { margin: .4rem 0; padding-left: 1.1rem; font-size: .85rem; line-height: 1.45; }
+#popup .resp li, #popup .items .resp li { margin: .3rem 0; padding: 0; border: 0; font-size: .85rem; }
+#popup p.meta { font-size: .8rem; color: var(--sage); font-style: italic; margin: .6rem 0 .3rem; }
+#popup p.bc { font-size: .8rem; margin: .3rem 0; }
+
+/* Expandable services/areas: click the summary to show responsibilities */
+#popup .expand li { padding: 0; }
+#popup details summary { cursor: pointer; list-style: none; }
+#popup details summary::-webkit-details-marker { display: none; }
+#popup .expand summary { position: relative; padding: .7rem 1.6rem .7rem 0; }
+#popup .expand summary::after {
+  content: '+'; position: absolute; right: .2rem; top: .6rem;
+  color: var(--forest); font-size: 1.2rem; font-weight: bold;
+}
+#popup .expand details[open] summary::after { content: '−'; }
+#popup .expand summary:hover strong, #popup details summary:focus-visible strong { text-decoration: underline; }
+#popup .expand .more { padding: 0 0 .8rem; border-top: 1px dashed var(--mint); }
+#popup details.circle { margin-top: 1.5rem; }
+#popup details.circle summary { color: var(--sage); font-weight: bold; font-size: .9rem; }
+#popup details.circle summary::before { content: '▸ '; }
+#popup details.circle[open] summary::before { content: '▾ '; }
 #popup-nav { position: absolute; top: .5rem; right: .75rem; display: flex; gap: .25rem; }
 #popup-nav button {
   color: var(--forest); font-size: 2rem; line-height: 1; background: none; border: 0;

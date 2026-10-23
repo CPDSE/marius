@@ -16,7 +16,7 @@ const AREAS = [
 // Slide text boxes that sat inside the circles: [html, x, y, w, h, pt, color]
 const LABELS = [
   ['Nucleus',                          2864583, 3121223,  857927, 307777, 14, '#3C5E3E'],
-  ['Endoplasmatic<br>Reticulum /<br>Work streams', 2683896, 1695597, 1519968, 276999, 12, '#3C5E3E'],
+  ['Endoplasmatic<br>Reticulum /<br>Services',2683896, 1695597, 1519968, 276999, 12, '#3C5E3E'],
   ['Research<br>Group',                 113812, 1435176,  872355, 461665, 12, '#3C5E3E'],
   ['Research<br>Group',                2472702,  443380,  872355, 461665, 12, '#3C5E3E'],
   ['Research<br>Group',                 251222, 5619930,  872355, 461665, 12, '#3C5E3E'],
