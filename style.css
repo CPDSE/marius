@@ -133,7 +133,7 @@ body { background: var(--ivory); }
   right: 0;
   height: 100%;
   width: min(380px, 100%);
-  padding: 2rem 1.5rem;
+  padding: 0 1.5rem 2rem;
   background: var(--soft-white);
   border-left: 6px solid var(--forest);
   box-shadow: -4px 0 24px rgba(0, 0, 0, .25);
@@ -150,7 +150,14 @@ body { background: var(--ivory); }
   transform: translateX(-100%);
 }
 #popup.left.open { transform: translateX(0); }
-#popup h2 { margin-top: 0; color: var(--forest); padding-bottom: .5rem; border-bottom: 3px solid var(--gold); }
+/* Title and nav buttons stay on top while the popup content scrolls */
+#popup-head {
+  position: sticky; top: 0; z-index: 2;
+  margin: 0 -1.5rem 1rem; padding: 2rem 1.5rem 0;
+  background: var(--soft-white);
+  box-shadow: 0 6px 8px -6px rgba(0, 0, 0, .15);
+}
+#popup h2 { margin: 0; color: var(--forest); padding-bottom: .5rem; border-bottom: 3px solid var(--gold); }
 #popup .lead { font-weight: bold; color: var(--charcoal); line-height: 1.5; }
 #popup h3 { color: var(--sage); font-size: 1rem; margin: 1.5rem 0 .25rem; }
 #popup .items { list-style: none; margin: 0; padding: 0; }
@@ -162,6 +169,20 @@ body { background: var(--ivory); }
 #popup .resp li, #popup .items .resp li { margin: .3rem 0; padding: 0; border: 0; font-size: .85rem; }
 #popup p.meta { font-size: .8rem; color: var(--sage); font-style: italic; margin: .6rem 0 .3rem; }
 #popup p.bc { font-size: .8rem; margin: .3rem 0; }
+#popup p.bc a { font-weight: bold; }
+
+/* "Wanna help?" invitation at the end of a popup or expanded entry */
+#popup .help {
+  margin: 1.2rem 0 .6rem; padding: .8rem 1rem;
+  background: rgba(214, 193, 124, .22); border-left: 4px solid var(--gold); border-radius: 6px;
+  font-size: .85rem; line-height: 1.45;
+}
+#popup .help h3 { margin: 0 0 .3rem; color: var(--forest); font-size: 1rem; }
+#popup .help h3::before { content: '🙋 '; }
+#popup .help p { margin: .3rem 0; }
+#popup .help ul { margin: .4rem 0; padding-left: 1.1rem; }
+#popup .help li, #popup .items .help li { margin: .25rem 0; padding: 0; border: 0; font-size: .85rem; }
+#popup .help p.bc { margin-top: .6rem; padding-top: .5rem; border-top: 1px dashed var(--gold); }
 
 /* Expandable services/areas: click the summary to show responsibilities */
 #popup .expand li { padding: 0; }

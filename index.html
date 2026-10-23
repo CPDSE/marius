@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CPDSE Cell Metaphor</title>
+<title>PharmaDataScience Tissue</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main id="stage">
   <header id="title">
     <a id="logo" href="https://cpdse.dk" target="_blank" rel="noopener" aria-label="CPDSE website"><img src="logo_wide_gold.png" alt="Center for Pharmaceutical Data Science Education"></a>
-    <h1>CPDSE Cell Metaphor</h1>
+    <h1>PharmaDataScience Tissue</h1>
     <p>Click an area to learn more</p>
   </header>
   <div id="figure">
@@ -21,16 +21,18 @@
     </div>
   </div>
   <!-- data-ids: the popup(s) a concept opens and highlights, as used in script.js -->
-  <p id="caption">Think of CPDSE as living tissue. The <button class="concept" data-ids="th01 th02 th03 th04 th05 th06">research groups</button> are its foundation and bring the science, held together by the <button class="concept" data-ids="rg">research community</button>. The center is the supporting cell in the middle: its <button class="concept" data-ids="nucleus">nucleus</button> coordinates, and its <button class="concept" data-ids="cyto">fundamentals</button> give everything structure. Together we send <button class="concept" data-ids="sv01 sv02 sv03 sv04">services</button> through the bloodstream to the pharma schools and their departments at SDU and UCPH.</p>
+  <p id="caption">Think of us as living tissue. The <button class="concept" data-ids="th01 th02 th03 th04 th05 th06">research groups</button> are its foundation and bring the science, held together by the <button class="concept" data-ids="rg">research community</button>. The center is the supporting cell in the middle: its <button class="concept" data-ids="nucleus">nucleus</button> coordinates, and its <button class="concept" data-ids="cyto">fundamentals</button> give everything structure. Together we send <button class="concept" data-ids="sv01 sv02 sv03 sv04">services</button> through the bloodstream to the pharma schools and their departments at SDU and UCPH.</p>
 </main>
 
 <aside id="popup" aria-hidden="true">
-  <div id="popup-nav">
-    <button id="prev" aria-label="Previous element">&#8249;</button>
-    <button id="next" aria-label="Next element">&#8250;</button>
-    <button id="close" aria-label="Close">&times;</button>
+  <div id="popup-head">
+    <div id="popup-nav">
+      <button id="prev" aria-label="Previous element">&#8249;</button>
+      <button id="next" aria-label="Next element">&#8250;</button>
+      <button id="close" aria-label="Close">&times;</button>
+    </div>
+    <h2 id="popup-title"></h2>
   </div>
-  <h2 id="popup-title"></h2>
   <div id="popup-body"></div>
 </aside>
 

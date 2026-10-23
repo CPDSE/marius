@@ -5,8 +5,10 @@ Run after editing the markdown:  python3 build_content.py
 Each "## Circle (`ID`)" becomes a popup; its "### Item (`ID`)" sections become
 expandable entries inside it. Items whose id starts with a prefix in
 SPLIT_PREFIXES get a popup of their own instead: each service (one per red
-blood cell) and each research theme (one per research-group shape). Editorial notes in the markdown (italic lines,
-"> " blockquotes, "(inferred)" markers, the "Open points" section) are left out.
+blood cell) and each research theme (one per research-group shape). A
+"**Wanna help?**" paragraph becomes a box at the end of the popup or entry, holding
+the Basecamp link. Editorial notes in the markdown (italic lines, "> " blockquotes,
+"(inferred)" markers, the "Open points" section) are left out.
 """
 import html
 import json
@@ -62,8 +64,11 @@ def split_sections(lines):
 
 
 def parse_block(lines):
-    """Return impact, responsibilities, meta text, Basecamp link and group names of a section."""
-    impact, resp, meta, basecamp, members = '', [], [], None, []
+    """Return impact, responsibilities, meta text, Basecamp link, group names and help of a section.
+
+    help is (intro text, [asks]) from a "**Wanna help?**" paragraph, or None.
+    """
+    impact, resp, meta, basecamp, members, help_ = '', [], [], None, [], None
     paragraphs, para = [], []
     for line in lines + ['']:
         if line.strip() in ('', '---'):
@@ -76,6 +81,16 @@ def parse_block(lines):
         first = para[0]
         if first.startswith(('**Impact:**', '**About:**')):
             impact = ' '.join(l.strip() for l in para).split(':**', 1)[1].strip()
+        elif first.startswith('**Wanna help?**'):
+            intro, asks = [first[len('**Wanna help?**'):].strip()], []
+            for line in para[1:]:
+                if line.startswith('- '):
+                    asks.append(line[2:].strip())
+                elif asks:
+                    asks[-1] += ' ' + line.strip()
+                else:
+                    intro.append(line.strip())
+            help_ = (' '.join(intro), asks)
         elif first.startswith('**Groups**'):
             members = [l[2:].strip() for l in para[1:] if l.startswith('- ')]
         elif first.startswith('**Responsibilities**'):
@@ -95,7 +110,7 @@ def parse_block(lines):
             if link:
                 label = 'Basecamp project' if bc.strip().startswith('[') else 'Related Basecamp project'
                 basecamp = (label, link.group(2))
-    return impact, resp, ' '.join(meta), basecamp, members
+    return impact, resp, ' '.join(meta), basecamp, members, help_
 
 
 def research_group_items():
@@ -107,16 +122,34 @@ def research_group_items():
             for li in items}
 
 
-def render_details(impact, resp, meta, basecamp):
+def render_details(resp, meta):
     parts = []
     if resp:
         parts.append('<ul class="resp">' + ''.join(f'<li>{inline(r)}</li>' for r in resp) + '</ul>')
     if meta:
         parts.append(f'<p class="meta">{inline(meta)}</p>')
-    if basecamp:
-        label, url = basecamp
-        parts.append(f'<p class="bc"><a href="{html.escape(url)}" target="_blank" rel="noopener">{label} ↗</a></p>')
     return ''.join(parts)
+
+
+def render_basecamp(basecamp):
+    if not basecamp:
+        return ''
+    label, url = basecamp
+    link = f'<a href="{html.escape(url)}" target="_blank" rel="noopener">{label} ↗</a>'
+    # Only a project or to-do list of its own holds tasks to pick up
+    note = ' Go here for concrete tasks you can pick up.' if label == 'Basecamp project' else ''
+    return f'<p class="bc">{link}{note}</p>'
+
+
+def render_help(help_, basecamp):
+    """The "Wanna help?" box ending with the Basecamp link, or just the link without help text."""
+    if not help_:
+        return render_basecamp(basecamp)
+    intro, asks = help_
+    box = f'<div class="help"><h3>Wanna help?</h3><p>{inline(intro)}</p>'
+    if asks:
+        box += '<ul>' + ''.join(f'<li>{inline(a)}</li>' for a in asks) + '</ul>'
+    return box + render_basecamp(basecamp) + '</div>'
 
 
 def build():
@@ -124,9 +157,9 @@ def build():
     content, circle = {}, None
     researchers = research_group_items()
     for level, title, sid, body in split_sections(lines):
-        impact, resp, meta, basecamp, members = parse_block(body)
+        impact, resp, meta, basecamp, members, help_ = parse_block(body)
         popup = {'title': title, 'lead': f'<p class="lead">{inline(impact)}</p>',
-                 'details': render_details(impact, resp, meta, basecamp),
+                 'details': render_details(resp, meta), 'help': render_help(help_, basecamp),
                  'children': [], 'prefix': None, 'has_resp': bool(resp)}
         if members:
             missing = [m for m in members if m not in researchers]
@@ -146,7 +179,7 @@ def build():
                 '<li><details><summary>'
                 f'<strong>{inline(title)}</strong><span>{inline(impact)}</span>'
                 '</summary>'
-                f'<div class="more">{render_details(impact, resp, meta, basecamp)}</div>'
+                f'<div class="more">{popup["details"]}{popup["help"]}</div>'
                 '</details></li>')
 
     out = {}
@@ -156,9 +189,10 @@ def build():
             # Lead with the services/areas; the circle's own responsibilities fold away below
             heading = CHILD_HEADINGS.get(c['prefix'], 'Areas')
             body += f'<h3>{heading}</h3><ul class="items expand">' + ''.join(c['children']) + '</ul>'
+            body += c['help']
             body += f'<details class="circle"><summary>The circle\'s responsibilities</summary>{c["details"]}</details>'
         else:
-            body += ('<h3>Responsibilities</h3>' if c['has_resp'] else '') + c['details']
+            body += ('<h3>Responsibilities</h3>' if c['has_resp'] else '') + c['details'] + c['help']
         if area == 'rg' and RESEARCH_GROUPS.exists():
             body += RESEARCH_GROUPS.read_text(encoding='utf-8').replace('\n', '')
         out[area] = {'title': c['title'], 'body': body}

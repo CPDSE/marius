@@ -57,6 +57,13 @@ work requires.
   educational research.
 - Keep the public overview of CPDSE's educational offer up to date.
 
+**Wanna help?** Help shape what the next generation of pharmacists learns about data
+science and AI. Talk to Lykke (UCPH) or Sebastian (SDU). Open asks right now:
+- Join the systematic review of educational research literature: synthesis, write-up and presentation.
+- Help design proper course evaluations for the upgraded courses.
+- Network with other data-science centres about computational teaching infrastructure.
+- Sign up to help improve the R documentation page that courses link to.
+
 Leads: Lykke Pedersen (UCPH), Sebastian Jakobsen (SDU). Advisory board: Curriculum
 Transformation Board.
 Basecamp: [WS:Curriculum upgrade](https://3.basecamp.com/6021648/projects/43870052)
@@ -74,6 +81,10 @@ that researchers can do analyses, models and visualisations they could not do al
 - Make sure the work is done to a professional standard and handed over properly
   to the research group.
 - Learn from finished projects to improve the service and identify recurring needs.
+
+**Wanna help?** If you enjoy getting your hands dirty with real research data, this is
+for you. And if your own project needs a data scientist, this is where to start. Get in touch
+with Arnault.
 
 Lead: Arnault-Quentin Vermillet (with Sarah Mittenentzwei at SDU later, if needed).
 Advisory board: Institutional Advisory Board.
@@ -95,6 +106,10 @@ rather than project by project.
 - Follow up with groups over time on whether the strategy is working.
 - Feed recurring needs back to the Mission circle as input to CPDSE's priorities *(inferred)*.
 
+**Wanna help?** Help research groups take the next step with data science, from
+pipelines to hiring. Interested in joining a strategy conversation, or would your own group
+like one? Get in touch with Morten.
+
 Lead: Morten Lindow. Advisory board: Institutional Advisory Board.
 Basecamp: [WS:Research Group Strategy Consulting](https://3.basecamp.com/6021648/projects/48628172)
 *Open: the spreadsheet notes "output format not specified". It is still undecided
@@ -114,6 +129,11 @@ AI skills, so that they can use these methods in their own teaching and research
 - Work with similar centres (for example HeaDS) instead of duplicating their offer.
 - Follow up on whether training leads to changed practice.
 
+**Wanna help?** Share what you know and watch colleagues grow. Talk to Jacob. Open asks
+right now:
+- Organise a GitHub training event for teachers.
+- Organise a uCloud training event for teachers.
+
 Lead: Jacob Fredegaard Hansen. Advisory board: Institutional Advisory Board.
 Basecamp: [WS:People development](https://3.basecamp.com/6021648/projects/48628170)
 
@@ -132,6 +152,10 @@ work instead of the friction around it.
 - Make it easy for members to see who owns what and to sign up as helpers.
 - Keep shared systems, channels and spaces working and documented.
 - Review responsibilities at each episode: add missing ones and retire those no longer needed.
+
+**Wanna help?** Every area above has an owner who would love a helper, and most need
+only a few hours. Pick something that sounds fun, sign up as a helper on the Basecamp to-do,
+or talk to the owner. If something is missing, add it.
 
 Staffed by the Nucleus and volunteers.
 Basecamp: [Circle:Fundamental](https://3.basecamp.com/6021648/projects/48628160)
@@ -158,6 +182,11 @@ so that the centre keeps learning and its services rest on a shared foundation.
   UCPH and SDU and hackathons *(inferred)*.
 - Keep shared coding standards and documentation (Python, R) available and up to date *(inferred)*.
 
+**Wanna help?** Help CPDSE keep learning. Open asks right now:
+- Sign up for the next sprint and suggest topics in the Sprint app (Finn).
+- Design content and curate resources for the student Code Club at UCPH (Arnault).
+- Join the hackathon crew (Philipp) or the core-models group (Morten).
+
 Basecamp: [Education and development to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249028248)
 
 ### Center rhythms, spaces and culture (`FU02`)
@@ -172,6 +201,12 @@ together, so that people across institutions know each other and want to work to
 - Look after CPDSE's physical spaces, such as the PharmaDataHub at UCPH.
 - Build the local CPDSE community at each site, for example through the SDU check-ins.
 - Facilitate the coordination meetings (Nucleus and portfolio syncs) *(inferred)*.
+
+**Wanna help?** Make CPDSE a place people want to be. Open asks right now:
+- Shape retrospectives and feedback formats, and help onboard affiliated people (Lykke).
+- Bring ideas for CPDSE Connect sessions, or for an escape-room event (Jeppe).
+- Show CPDSE's progress on posters or screens in our UCPH spaces (Jeppe), or help
+  furnish the SDU space (Cecilie).
 
 Basecamp: [Community & Engagement to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249026942)
 
@@ -190,6 +225,13 @@ so that members can work with data and with each other without technical barrier
 - Keep an up-to-date overview of the systems and resources CPDSE has access to.
 - Work with KU-IT and SDU IT on behalf of the centre.
 
+**Wanna help?** Tinkerers wanted. Open asks right now:
+- Alpha-test CPDSE's own local LLM, private and free to use (Arnault).
+- Work out where to store data repositories, and how to bring in and share data with
+  the outside world (Kasper).
+- Write a GitHub 101 on how to access CPDSE materials (Sarah).
+- Join one of the AI strategy sub-groups (Sarah).
+
 Basecamp: [Infrastructure & Tools to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249025835)
 
 ### Communication and social media (`FU04`)
@@ -204,6 +246,12 @@ informed and partners, students and the wider field know what CPDSE offers.
   organisation.
 - Maintain the CPDSE visual identity: graphical assets, slide decks and merchandise.
 
+**Wanna help?** Got a story, an eye for design or a camera? Open asks right now:
+- Suggest stories about CPDSE for LinkedIn (Jacob).
+- Take photos, and update posters and flyers with the new logo (Jeppe).
+- Help visualise WoW 2.0 and the tissue picture, for example as a booklet (Jeppe).
+- Have an idea for the website? Open a to-do for it (Sarah).
+
 Basecamp: [Comms & SoMe to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249025188)
 
 ### Onboarding (`FU05`)
@@ -216,6 +264,12 @@ that they quickly know where things are, who to ask and how to take part.
 - Onboard students who join CPDSE activities.
 - Keep the information newcomers need easy to find: people, systems, ways of working.
 - Connect each newcomer to the circles, services and people relevant to them.
+
+**Wanna help?** Remember your own first week? Help make it better for the next person.
+Open asks right now:
+- Build the onboarding plans for new PhD students and new members, from preboarding to
+  the first three months (Jeppe).
+- Help work out how we find out who is joining CPDSE (Karlis).
 
 Basecamp: [Onboarding to-do list](https://3.basecamp.com/6021648/buckets/48628160/todolists/10249024555)
 
@@ -234,6 +288,9 @@ moves as one.
 - Run the weekly check-in that keeps the circles in step.
 - Initiate and run sprints together with participants from across the centre.
 - Pass information and decisions between the Mission circle and the rest of CPDSE.
+
+**Wanna help?** Curious how the pieces fit together? Join a weekly check-in or a
+sprint, or talk to Lykke.
 
 Members: CPDSE's full-time staff and research group leaders. Lead: Lykke Pedersen
 (as portfolio lead). Meets weekly.
@@ -261,6 +318,14 @@ advance research they could not do alone.
 - Welcome new researchers and students, and connect them to the CPDSE services where
   they can contribute.
 
+**Wanna help?** Everybody doing pharmaceutical data-science research is welcome.
+Drop by Convergence Coffee on Fridays, or join one of the community experiments from the
+summer retreat:
+- A writing retreat (Casper).
+- Active exchange around shared scientific questions (Anders).
+- Peer dialogues for PhD students (Finn).
+- An infrastructure knowledge base, which still needs an owner.
+
 Leads: Philipp Hans, Karlis Berzins, Jane Knöchel, Casper Steinmann. Main priority for
 Season 4.
 Basecamp: [Circle: Pharmaceutical Data Science Research Community](https://3.basecamp.com/6021648/projects/43870063)
@@ -283,6 +348,9 @@ targets and explain why patients respond differently to medicines.
 - Alexander S. Hauser
 - David Gloriam
 
+**Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
+one of the group leaders above, or the Research Community leads.
+
 ### Molecular design and new modalities (`TH02`)
 
 **About:** We design and model new drug molecules, from small molecules to RNA-based
@@ -292,6 +360,9 @@ therapeutics, with computational chemistry and data-driven design tools.
 - Albert Kooistra
 - Jacob Kongsted
 - Morten Lindow
+
+**Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
+one of the group leaders above, or the Research Community leads.
 
 ### Formulation and pharmaceutical materials (`TH03`)
 
@@ -303,6 +374,9 @@ stable, effective and can be designed with data rather than by trial and error.
 - Karlis Berzins
 - Judith Kuntsche
 
+**Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
+one of the group leaders above, or the Research Community leads.
+
 ### Pharmacometrics and clinical pharmacology (`TH04`)
 
 **About:** We model how drugs and diseases behave in patients, so that dosing and
@@ -311,6 +385,9 @@ treatment can be designed for each patient population.
 **Groups**
 - Jane Knöchel
 - Trine Meldgård Lund
+
+**Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
+one of the group leaders above, or the Research Community leads.
 
 ### Real-world evidence and drug safety (`TH05`)
 
@@ -321,6 +398,9 @@ used in practice and to detect safety signals.
 - Anton Pottegård
 - Morten Andersen
 
+**Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
+one of the group leaders above, or the Research Community leads.
+
 ### Pharma data-science education (`TH06`)
 
 **About:** We research how science is taught and learned, so that pharma educators can
@@ -328,6 +408,9 @@ build data science into teaching that works.
 
 **Groups**
 - Hendra Augustian
+
+**Wanna help?** Want to collaborate, or bring your own research into this theme? Contact
+one of the group leaders above, or the Research Community leads.
 
 ---
 

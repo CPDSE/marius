@@ -70,6 +70,7 @@ function open(id) {
   setClass(id, 'selected', true);
   title.textContent = CONTENT[id].title;
   body.innerHTML = CONTENT[id].body;
+  popup.scrollTop = 0;
   // Open on the side that covers less of the element, so it stays visible
   const boxes = groups[id].map(b => b.getBoundingClientRect());
   const l = Math.min(...boxes.map(r => r.left)), r = Math.max(...boxes.map(r => r.right));
