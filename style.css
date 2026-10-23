@@ -28,8 +28,31 @@ body { background: var(--ivory); }
   position: relative;
   flex: none;
   aspect-ratio: 10111081 / 6858000;
-  width: min(100%, calc((100vh - 6.5rem) * 10111081 / 6858000));
+  width: min(100%, calc((100vh - 9.5rem) * 10111081 / 6858000));
 }
+/* Explanation of the metaphor under the picture; its height is reserved above */
+#caption {
+  width: min(100%, calc((100vh - 9.5rem) * 10111081 / 6858000));
+  max-width: 60rem;
+  margin: .6rem 0 0;
+  text-align: center;
+  font-style: italic;
+  font-size: clamp(.7rem, 1.6vh, .95rem);
+  line-height: 1.45;
+  color: var(--forest);
+}
+/* Caption words linked to areas of the picture; highlighted together with them */
+#caption .concept {
+  font: inherit; color: var(--forest); font-weight: bold;
+  background: none; border: 0; padding: 0 .15em; margin: 0 -.15em; border-radius: 3px;
+  text-decoration: underline dotted; text-underline-offset: .2em;
+  cursor: pointer; transition: background .15s, box-shadow .15s;
+}
+#caption .concept[data-ids^="sv"] { color: #7A1F1F; }
+#caption .concept.hover, #caption .concept:focus-visible {
+  outline: none; background: rgba(214, 193, 124, .45); box-shadow: 0 0 0 2px var(--gold);
+}
+#caption .concept.selected { background: rgba(60, 94, 62, .18); box-shadow: 0 0 0 2px var(--forest); }
 /* Feathers the picture's edges into the page background */
 #paper {
   position: absolute;
@@ -61,9 +84,11 @@ body { background: var(--ivory); }
   cursor: default;
 }
 #hotspots { position: absolute; inset: 0; container-type: inline-size; }
-/* Service names beside the red blood cells: clickable, in the cells' dark red */
-.label.svc { color: #7A1F1F; pointer-events: auto; cursor: pointer; z-index: 1; }
-.label.svc:hover { text-decoration: underline; }
+/* Clickable labels (service names, ECM); underlined while they or their area are hovered */
+.label.link { pointer-events: auto; cursor: pointer; z-index: 1; }
+.label.link:hover, .label.link.hover { text-decoration: underline; }
+/* Service names beside the red blood cells, in the cells' dark red */
+.label.svc { color: #7A1F1F; }
 #arrow { overflow: visible; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .label {
   position: absolute;

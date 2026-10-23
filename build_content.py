@@ -3,8 +3,9 @@
 Run after editing the markdown:  python3 build_content.py
 
 Each "## Circle (`ID`)" becomes a popup; its "### Item (`ID`)" sections become
-expandable entries inside it. The Services circle has no popup of its own:
-each service gets one instead (one per red blood cell). Editorial notes in the markdown (italic lines,
+expandable entries inside it. Items whose id starts with a prefix in
+SPLIT_PREFIXES get a popup of their own instead: each service (one per red
+blood cell) and each research theme (one per research-group shape). Editorial notes in the markdown (italic lines,
 "> " blockquotes, "(inferred)" markers, the "Open points" section) are left out.
 """
 import html
@@ -26,6 +27,8 @@ AREA_IDS = {
     'CIR_RESEARCH': 'rg',
     'CIR_MISSION': 'mission',  # no area in the figure yet
 }
+# Items with these id prefixes get their own popup, keyed by lowercased id (e.g. th01)
+SPLIT_PREFIXES = ('SV', 'TH')
 # Heading shown above a circle's expandable entries, by child id prefix
 CHILD_HEADINGS = {'SV': 'Our services', 'FU': 'Areas'}
 
@@ -59,8 +62,8 @@ def split_sections(lines):
 
 
 def parse_block(lines):
-    """Return impact, responsibilities, meta text and Basecamp link of a section."""
-    impact, resp, meta, basecamp = '', [], [], None
+    """Return impact, responsibilities, meta text, Basecamp link and group names of a section."""
+    impact, resp, meta, basecamp, members = '', [], [], None, []
     paragraphs, para = [], []
     for line in lines + ['']:
         if line.strip() in ('', '---'):
@@ -71,8 +74,10 @@ def parse_block(lines):
             para.append(line)
     for para in paragraphs:
         first = para[0]
-        if first.startswith('**Impact:**'):
-            impact = ' '.join(l.strip() for l in para)[len('**Impact:**'):].strip()
+        if first.startswith(('**Impact:**', '**About:**')):
+            impact = ' '.join(l.strip() for l in para).split(':**', 1)[1].strip()
+        elif first.startswith('**Groups**'):
+            members = [l[2:].strip() for l in para[1:] if l.startswith('- ')]
         elif first.startswith('**Responsibilities**'):
             for line in para[1:]:
                 if line.startswith('- '):
@@ -90,7 +95,16 @@ def parse_block(lines):
             if link:
                 label = 'Basecamp project' if bc.strip().startswith('[') else 'Related Basecamp project'
                 basecamp = (label, link.group(2))
-    return impact, resp, ' '.join(meta), basecamp
+    return impact, resp, ' '.join(meta), basecamp, members
+
+
+def research_group_items():
+    """Researcher name -> its <li> in research-groups.html."""
+    if not RESEARCH_GROUPS.exists():
+        return {}
+    items = re.findall(r'<li>.*?</li>', RESEARCH_GROUPS.read_text(encoding='utf-8'), re.S)
+    return {re.sub(r'<[^>]+>', '', re.search(r'<strong>(.*?)</strong>', li).group(1)): li
+            for li in items}
 
 
 def render_details(impact, resp, meta, basecamp):
@@ -107,17 +121,24 @@ def render_details(impact, resp, meta, basecamp):
 
 def build():
     lines = SOURCE.read_text(encoding='utf-8').splitlines()
-    content, circle, split = {}, None, False
+    content, circle = {}, None
+    researchers = research_group_items()
     for level, title, sid, body in split_sections(lines):
-        impact, resp, meta, basecamp = parse_block(body)
+        impact, resp, meta, basecamp, members = parse_block(body)
         popup = {'title': title, 'lead': f'<p class="lead">{inline(impact)}</p>',
                  'details': render_details(impact, resp, meta, basecamp),
-                 'children': [], 'prefix': None}
+                 'children': [], 'prefix': None, 'has_resp': bool(resp)}
+        if members:
+            missing = [m for m in members if m not in researchers]
+            if missing:
+                raise SystemExit(f'{sid}: not in {RESEARCH_GROUPS.name}: {", ".join(missing)}')
+            popup['details'] += ('<h3>Research groups</h3><ul class="items">'
+                                 + ''.join(researchers[m] for m in members) + '</ul>')
         if level == 2:
-            circle, split = None, AREA_IDS.get(sid, '') is None
+            circle = None
             if AREA_IDS.get(sid):
                 circle = content[AREA_IDS[sid]] = popup
-        elif split:
+        elif sid.startswith(SPLIT_PREFIXES):
             content[sid.lower()] = popup
         elif circle is not None:
             circle['prefix'] = circle['prefix'] or sid[:2]
@@ -137,7 +158,7 @@ def build():
             body += f'<h3>{heading}</h3><ul class="items expand">' + ''.join(c['children']) + '</ul>'
             body += f'<details class="circle"><summary>The circle\'s responsibilities</summary>{c["details"]}</details>'
         else:
-            body += '<h3>Responsibilities</h3>' + c['details']
+            body += ('<h3>Responsibilities</h3>' if c['has_resp'] else '') + c['details']
         if area == 'rg' and RESEARCH_GROUPS.exists():
             body += RESEARCH_GROUPS.read_text(encoding='utf-8').replace('\n', '')
         out[area] = {'title': c['title'], 'body': body}

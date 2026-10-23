@@ -269,6 +269,66 @@ Basecamp: [Circle: Pharmaceutical Data Science Research Community](https://3.bas
 responsibilities, so they are left unchanged here. Their open review points remain in
 the spreadsheet.*
 
+*The six research themes below group the 13 CPDSE research groups along the Pharma
+Value Chain model, one theme per research-group shape in the picture. Group names must
+match the names in `research-groups.html`. Affiliated researchers are not yet assigned
+to themes.*
+
+### Disease and target biology (`TH01`)
+
+**About:** We use genetic, protein and receptor data to understand disease, find drug
+targets and explain why patients respond differently to medicines.
+
+**Groups**
+- Alexander S. Hauser
+- David Gloriam
+
+### Molecular design and new modalities (`TH02`)
+
+**About:** We design and model new drug molecules, from small molecules to RNA-based
+therapeutics, with computational chemistry and data-driven design tools.
+
+**Groups**
+- Albert Kooistra
+- Jacob Kongsted
+- Morten Lindow
+
+### Formulation and pharmaceutical materials (`TH03`)
+
+**About:** We study crystals, materials and delivery systems so that drug products are
+stable, effective and can be designed with data rather than by trial and error.
+
+**Groups**
+- Anders Østergård Madsen
+- Karlis Berzins
+- Judith Kuntsche
+
+### Pharmacometrics and clinical pharmacology (`TH04`)
+
+**About:** We model how drugs and diseases behave in patients, so that dosing and
+treatment can be designed for each patient population.
+
+**Groups**
+- Jane Knöchel
+- Trine Meldgård Lund
+
+### Real-world evidence and drug safety (`TH05`)
+
+**About:** We analyse health registries and healthcare data to show how medicines are
+used in practice and to detect safety signals.
+
+**Groups**
+- Anton Pottegård
+- Morten Andersen
+
+### Pharma data-science education (`TH06`)
+
+**About:** We research how science is taught and learned, so that pharma educators can
+build data science into teaching that works.
+
+**Groups**
+- Hendra Augustian
+
 ---
 
 ## Mission (`CIR_MISSION`)
