@@ -35,8 +35,9 @@ body { background: var(--ivory); }
 #figure {
   position: relative;
   flex: none;
+  margin-top: 1.5rem;
   aspect-ratio: 10111081 / 6858000;
-  width: min(100%, calc((100vh - 13.8rem) * 10111081 / 6858000));
+  width: min(100%, calc((100vh - 15.3rem) * 10111081 / 6858000));
 }
 /* Intro state: picture is blurred until the visitor presses Start */
 #figure #paper, #figure #hotspots { transition: filter .6s ease, opacity .6s ease; }
@@ -54,7 +55,7 @@ body.intro #start { display: block; text-align: center; }
 /* Explanation of the metaphor above the picture, flanked by arrows that cycle through the areas */
 #caption-row {
   display: flex; align-items: center; justify-content: center; gap: .6rem;
-  width: min(100%, calc((100vh - 13.8rem) * 10111081 / 6858000));
+  width: min(100%, calc((100vh - 15.3rem) * 10111081 / 6858000));
   max-width: 60rem;
   margin: 0 0 .5rem;
 }
@@ -75,6 +76,7 @@ body.intro #start { display: block; text-align: center; }
 }
 .cycle span { font-size: 1.3em; vertical-align: -.08em; }
 .cycle:hover, .cycle:focus-visible { background: var(--sand); }
+.cycle:disabled { opacity: .45; cursor: not-allowed; background: var(--gold); }
 /* Keep the page content clear of the open popup on wide screens */
 @media (min-width: 900px) {
   #stage { transition: padding .25s ease; }

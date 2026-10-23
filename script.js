@@ -69,7 +69,12 @@ const header = document.getElementById('title');
 const syncHeader = () => document.documentElement.style.setProperty('--head-h', header.offsetHeight + 'px');
 new ResizeObserver(syncHeader).observe(header);
 syncHeader();
-function start() { document.body.classList.remove('intro'); }
+const cycleBtns = document.querySelectorAll('.cycle');
+cycleBtns.forEach(b => b.disabled = true);
+function start() {
+  document.body.classList.remove('intro');
+  cycleBtns.forEach(b => b.disabled = false);
+}
 document.getElementById('start').addEventListener('click', start);
 // Pressing any button or link on the page ends the intro blur
 document.addEventListener('click', e => { if (e.target.closest('button, a, .hs, .link')) start(); }, true);
