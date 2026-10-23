@@ -65,6 +65,13 @@ function open(id) {
   setClass(id, 'selected', true);
   title.textContent = CONTENT[id].title;
   body.innerHTML = CONTENT[id].body;
+  // Open on the side that covers less of the element, so it stays visible
+  const boxes = groups[id].map(b => b.getBoundingClientRect());
+  const l = Math.min(...boxes.map(r => r.left)), r = Math.max(...boxes.map(r => r.right));
+  const w = popup.offsetWidth, vw = window.innerWidth;
+  const coverLeft = Math.max(0, Math.min(r, w) - l);
+  const coverRight = Math.max(0, r - Math.max(l, vw - w));
+  popup.classList.toggle('left', coverLeft < coverRight);
   popup.classList.add('open');
   popup.setAttribute('aria-hidden', 'false');
 }

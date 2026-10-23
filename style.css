@@ -118,6 +118,14 @@ body { background: var(--ivory); }
   transition: transform .25s ease;
 }
 #popup.open { transform: translateX(0); }
+/* Mirrored panel for elements on the right half of the figure */
+#popup.left {
+  right: auto; left: 0;
+  border-left: 0; border-right: 6px solid var(--forest);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, .25);
+  transform: translateX(-100%);
+}
+#popup.left.open { transform: translateX(0); }
 #popup h2 { margin-top: 0; color: var(--forest); padding-bottom: .5rem; border-bottom: 3px solid var(--gold); }
 #popup .lead { font-weight: bold; color: var(--charcoal); line-height: 1.5; }
 #popup h3 { color: var(--sage); font-size: 1rem; margin: 1.5rem 0 .25rem; }
