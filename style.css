@@ -36,12 +36,26 @@ body { background: var(--ivory); }
   position: relative;
   flex: none;
   aspect-ratio: 10111081 / 6858000;
-  width: min(100%, calc((100vh - 9.5rem) * 10111081 / 6858000));
+  width: min(100%, calc((100vh - 13.8rem) * 10111081 / 6858000));
 }
+/* Intro state: picture is blurred until the visitor presses Start */
+#figure #paper, #figure #hotspots { transition: filter .6s ease, opacity .6s ease; }
+body.intro #figure #paper, body.intro #figure #hotspots { filter: blur(14px); opacity: .7; pointer-events: none; }
+#start {
+  display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3;
+  font: inherit; font-size: clamp(1rem, 2.6vh, 1.4rem); font-weight: bold; letter-spacing: .05em;
+  color: var(--forest); background: var(--gold); border: 3px solid var(--forest); border-radius: 999px;
+  padding: .7em 2em; cursor: pointer; box-shadow: 0 4px 18px rgba(0, 0, 0, .3);
+  transition: background .15s, transform .15s;
+}
+body.intro #start { display: block; text-align: center; }
+#start small { display: block; margin-top: .3em; font-size: .6em; font-weight: normal; letter-spacing: 0; }
+#start:hover, #start:focus-visible { background: var(--sand); transform: translate(-50%, -50%) scale(1.05); }
 /* Explanation of the metaphor above the picture, flanked by arrows that cycle through the areas */
 #caption-row {
   display: flex; align-items: center; justify-content: center; gap: .6rem;
-  width: min(100%, calc((100vh - 9.5rem) * 10111081 / 6858000));
+  width: min(100%, calc((100vh - 13.8rem) * 10111081 / 6858000));
+  max-width: 60rem;
   margin: 0 0 .5rem;
 }
 #caption {
@@ -49,16 +63,24 @@ body { background: var(--ivory); }
   margin: 0;
   text-align: center;
   font-style: italic;
-  font-size: clamp(.7rem, 1.6vh, .95rem);
+  font-size: clamp(.85rem, 2.1vh, 1.15rem);
   line-height: 1.45;
   color: var(--forest);
 }
+#cycle-row { display: flex; justify-content: center; gap: 1rem; margin: 0 0 .5rem; }
 .cycle {
-  flex: none; width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid var(--gold);
-  background: var(--soft-white); color: var(--forest); font-size: 1.5rem; line-height: 1;
-  padding: 0 0 .15rem; cursor: pointer; transition: background .15s;
+  flex: none; height: 2rem; border-radius: 999px; border: 2px solid var(--forest);
+  background: var(--gold); color: var(--forest); font: inherit; font-size: clamp(.75rem, 1.7vh, .9rem); font-weight: bold;
+  line-height: 1; padding: 0 1em; cursor: pointer; white-space: nowrap; transition: background .15s;
 }
+.cycle span { font-size: 1.3em; vertical-align: -.08em; }
 .cycle:hover, .cycle:focus-visible { background: var(--sand); }
+/* Keep the page content clear of the open popup on wide screens */
+@media (min-width: 900px) {
+  #stage { transition: padding .25s ease; }
+  body.pop-right #stage { padding-right: calc(380px + 1.5rem); }
+  body.pop-left #stage { padding-left: calc(380px + 1.5rem); }
+}
 /* Caption words linked to areas of the picture; highlighted together with them */
 #caption .concept {
   font: inherit; color: var(--forest); font-weight: bold;
@@ -149,10 +171,10 @@ body { background: var(--ivory); }
 
 #popup {
   position: fixed;
-  top: 0;
+  top: var(--head-h, 3rem);
   z-index: 10;
   right: 0;
-  height: 100%;
+  height: calc(100% - var(--head-h, 3rem));
   width: min(380px, 100%);
   padding: 0 1.5rem 2rem;
   background: var(--soft-white);

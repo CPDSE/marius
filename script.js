@@ -64,7 +64,18 @@ const setClass = (id, cls, on) => {
 };
 let current = null;
 
+// The popup starts below the header so the header controls stay reachable
+const header = document.getElementById('title');
+const syncHeader = () => document.documentElement.style.setProperty('--head-h', header.offsetHeight + 'px');
+new ResizeObserver(syncHeader).observe(header);
+syncHeader();
+function start() { document.body.classList.remove('intro'); }
+document.getElementById('start').addEventListener('click', start);
+// Pressing any button or link on the page ends the intro blur
+document.addEventListener('click', e => { if (e.target.closest('button, a, .hs, .link')) start(); }, true);
+
 function open(id) {
+  start();
   if (current) setClass(current, 'selected', false);
   current = id;
   setClass(id, 'selected', true);
@@ -80,6 +91,8 @@ function open(id) {
   const coverLeft = Math.max(0, Math.min(r, w) - l);
   const coverRight = Math.max(0, r - Math.max(l, vw - w));
   popup.classList.toggle('left', coverLeft < coverRight);
+  document.body.classList.toggle('pop-left', coverLeft < coverRight);
+  document.body.classList.toggle('pop-right', !(coverLeft < coverRight));
   popup.classList.add('open');
   popup.setAttribute('aria-hidden', 'false');
 }
@@ -87,6 +100,7 @@ function close() {
   if (current) setClass(current, 'selected', false);
   current = null;
   popup.classList.remove('open');
+  document.body.classList.remove('pop-left', 'pop-right');
   popup.setAttribute('aria-hidden', 'true');
 }
 
