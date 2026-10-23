@@ -118,6 +118,18 @@ for (const [html, x, y, w, h, pt] of STATIC_LABELS) {
 }
 
 document.getElementById('close').addEventListener('click', close);
+const ORDER = [...new Set(AREAS.map(a => a[0]))];
+function step(dir) {
+  const i = ORDER.indexOf(current);
+  open(ORDER[(i + dir + ORDER.length) % ORDER.length]);
+}
+document.getElementById('prev').addEventListener('click', () => step(-1));
+document.getElementById('next').addEventListener('click', () => step(1));
+document.addEventListener('keydown', e => {
+  if (!current) return;
+  if (e.key === 'ArrowLeft') step(-1);
+  else if (e.key === 'ArrowRight') step(1);
+});
 document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 // Any click outside the popup closes it; clicks on clickable areas are handled by their own toggle
 document.addEventListener('click', e => {

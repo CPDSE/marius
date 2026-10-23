@@ -102,6 +102,7 @@ body { background: var(--ivory); }
 #popup {
   position: fixed;
   top: 0;
+  z-index: 10;
   right: 0;
   height: 100%;
   width: min(380px, 100%);
@@ -122,7 +123,10 @@ body { background: var(--ivory); }
 #popup .items strong { display: block; color: var(--forest); }
 #popup .items .meta { display: block; font-size: .8rem; color: var(--sage); font-style: italic; }
 #popup a { color: var(--forest); }
-#close {
-  position: absolute; top: .5rem; right: .75rem; color: var(--forest);
-  font-size: 2rem; line-height: 1; background: none; border: 0; cursor: pointer;
+#popup-nav { position: absolute; top: .5rem; right: .75rem; display: flex; gap: .25rem; }
+#popup-nav button {
+  color: var(--forest); font-size: 2rem; line-height: 1; background: none; border: 0;
+  cursor: pointer; padding: 0 .35rem; border-radius: 4px;
 }
+#popup-nav button:hover, #popup-nav button:focus-visible { background: var(--sand); }
+#popup h2 { padding-right: 7rem; }
