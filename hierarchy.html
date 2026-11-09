@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- Generated from hierarchy_of_purpose_levels.xlsx by build_hierarchy.py: edit those, not this file. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hierarchy of purpose</title>
+<style>
+  :root { --forest: #3C5E3E; --sage: #5F7D61; --mint: #A9BBAA; --gold: #D6C17C; --ivory: #F6F1DC; --cols: 4; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 1.5rem 16px 2rem; background: var(--ivory); color: #333; font-family: Verdana, Geneva, sans-serif; }
+  h1 { margin: 0 auto .3rem; max-width: 72rem; color: var(--forest); font-size: 1.4rem; letter-spacing: .04em; }
+  .intro { margin: 0 auto 1.2rem; max-width: 72rem; font-size: .85rem; color: var(--sage); }
+  .stack { max-width: 72rem; margin: 0 auto; }
+  .band { display: grid; grid-template-columns: 9rem 1fr; gap: .8rem; align-items: stretch;
+          padding: .7rem 0; border-top: 2px solid var(--mint); }
+  .band:first-child { border-top: 0; }
+  .level { display: flex; flex-direction: column; justify-content: center; color: var(--forest); font-size: .85rem; }
+  .level small { color: var(--sage); font-size: .7rem; margin-top: .2rem; }
+  .cells { display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: .6rem; }
+  .span { grid-column: 1 / -1; display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem; }
+  .col { display: flex; flex-direction: column; gap: .4rem; }
+  .box { display: block; padding: .5rem .7rem; border-radius: .6rem; background: var(--bg); color: var(--fg);
+         border: 2px solid color-mix(in srgb, var(--fg) 35%, transparent); text-decoration: none; font-size: .8rem;
+         line-height: 1.3; position: relative; }
+  .span .box { min-width: 16rem; text-align: center; font-weight: bold; }
+  a.box:hover, a.box:focus-visible { border-color: var(--gold); outline: none; box-shadow: 0 0 0 2px var(--gold); }
+  .box .bc { position: absolute; top: .25rem; right: .4rem; font-size: .7rem; opacity: .8; }
+  .box .name { display: block; padding-right: .8rem; }
+  .box .parent { display: block; margin-top: .2rem; font-size: .68rem; opacity: .75; font-style: italic; }
+  .heads { display: grid; grid-template-columns: 9rem 1fr; gap: .8rem; position: sticky; top: 0; background: var(--ivory);
+           padding: .4rem 0; z-index: 1; }
+  .heads .cells div { font-size: .7rem; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; color: var(--sage); }
+  .legend { max-width: 72rem; margin: 1rem auto 0; font-size: .75rem; color: var(--sage); }
+  @media (max-width: 760px) {
+    .band, .heads { grid-template-columns: 1fr; }
+    .cells { grid-template-columns: 1fr; }
+    .heads { display: none; }
+  }
+</style>
+</head>
+<body>
+<h1>Hierarchy of purpose</h1>
+<p class="intro">From the grant's purpose down to concrete projects. Each layer is updated on its own rhythm;
+below the center, each column is one portfolio. Click a box to open it in Basecamp; hover for notes.</p>
+<div class="stack">
+<div class="heads"><div></div><div class="cells"><div>Services</div><div>Fundamental</div><div>PharmaDataScience Research Community</div><div>Nucleus</div></div></div>
+<section class="band"><div class="level"><strong>CenterGrant</strong><small>Grant period</small></div><div class="cells"><div class="span"><a class="box" style="--bg:#F6F1DC;--fg:#3C5E3E" title="CenterGrant · updated per grant period
+Basecamp: People, Data and Drugs HQ
+No project for the purpose itself; HQ is the center-wide project for everyone." href="https://app.basecamp.com/6021648/projects/43869145" target="_blank" rel="noopener"><span class="name">CPDSE purpose</span><span class="bc" title="Basecamp: Possible">○</span></a></div></div></section><section class="band"><div class="level"><strong>Center</strong><small>Season</small></div><div class="cells"><div class="span"><a class="box" style="--bg:#F6F1DC;--fg:#3C5E3E" title="Center · updated per season
+Basecamp: Season 4 - All active people aka &quot;The Connective Tissue&quot;
+Season project is named per season, with the nickname &quot;The Connective Tissue&quot;." href="https://app.basecamp.com/6021648/projects/43869215" target="_blank" rel="noopener"><span class="name">Season Theme and Direction</span><span class="bc" title="Basecamp: Name differs">◐</span></a><a class="box" style="--bg:#F6F1DC;--fg:#3C5E3E" title="Center · updated per season
+Basecamp: Circle:Mission
+&quot;Circle:&quot; prefix. A separate &quot;Mission Circle - Confidential&quot; project also exists." href="https://app.basecamp.com/6021648/projects/43870021" target="_blank" rel="noopener"><span class="name">Mission</span><span class="bc" title="Basecamp: Name differs">◐</span></a></div></div></section><section class="band"><div class="level"><strong>Portfolio</strong><small>Season</small></div><div class="cells"><div class="col"><div class="box" style="--bg:#F2DCDC;--fg:#7A1F1F" title="Portfolio · updated per season
+No Circle:Services project found, although the WoW 2.0 announcement mentions one; each service has its own WS: project."><span class="name">Services</span></div></div><div class="col"><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Portfolio · updated per season
+Basecamp: Circle:Fundamental
+&quot;Circle:&quot; prefix." href="https://app.basecamp.com/6021648/projects/48628160" target="_blank" rel="noopener"><span class="name">Fundamental</span><span class="bc" title="Basecamp: Name differs">◐</span></a></div><div class="col"><a class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Portfolio · updated per season
+Basecamp: Circle: Pharmaceutical Data Science Research Community
+&quot;Pharmaceutical Data Science&quot; vs &quot;PharmaDataScience&quot;; also a space after &quot;Circle:&quot;, unlike the other circles." href="https://app.basecamp.com/6021648/projects/43870063" target="_blank" rel="noopener"><span class="name">PharmaDataScience Research Community</span><span class="bc" title="Basecamp: Name differs">◐</span></a></div><div class="col"><a class="box" style="--bg:#3C5E3E;--fg:#F9F9F9" title="Portfolio · updated per season
+Basecamp: Circle:Nucleus
+&quot;Circle:&quot; prefix." href="https://app.basecamp.com/6021648/projects/48628158" target="_blank" rel="noopener"><span class="name">Nucleus</span><span class="bc" title="Basecamp: Name differs">◐</span></a></div></div></section><section class="band"><div class="level"><strong>Program</strong><small>Season</small></div><div class="cells"><div class="col"><a class="box" style="--bg:#F2DCDC;--fg:#7A1F1F" title="Program · updated per season
+Part of: Services
+Basecamp: WS:Curriculum upgrade
+&quot;WS:&quot; (workstream) prefix while the site says &quot;service&quot;; lower-case &quot;upgrade&quot;." href="https://app.basecamp.com/6021648/projects/43870052" target="_blank" rel="noopener"><span class="name">Curriculum Upgrade</span><span class="bc" title="Basecamp: Name differs">◐</span></a><a class="box" style="--bg:#F2DCDC;--fg:#7A1F1F" title="Program · updated per season
+Part of: Services
+Basecamp: WS:Research Project Consulting
+&quot;WS:&quot; prefix. Project exists but is not in Morten&#x27;s project list (membership?)." href="https://app.basecamp.com/6021648/projects/48628171" target="_blank" rel="noopener"><span class="name">Research Project Consulting</span><span class="bc" title="Basecamp: Name differs">◐</span></a><a class="box" style="--bg:#F2DCDC;--fg:#7A1F1F" title="Program · updated per season
+Part of: Services
+Basecamp: WS:Research Group Strategy Consulting
+&quot;WS:&quot; prefix." href="https://app.basecamp.com/6021648/projects/48628172" target="_blank" rel="noopener"><span class="name">Research Group Strategy Consulting</span><span class="bc" title="Basecamp: Name differs">◐</span></a><a class="box" style="--bg:#F2DCDC;--fg:#7A1F1F" title="Program · updated per season
+Part of: Services
+Basecamp: WS:People development
+&quot;WS:&quot; prefix; lower-case &quot;development&quot;. The workbook called it &quot;Staff development&quot; before." href="https://app.basecamp.com/6021648/projects/48628170" target="_blank" rel="noopener"><span class="name">People Development</span><span class="bc" title="Basecamp: Name differs">◐</span></a></div><div class="col"><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Program · updated per season
+Part of: Fundamental
+Basecamp: Education and development (to-do list)
+A to-do list in Circle:Fundamental, not a project." href="https://app.basecamp.com/6021648/buckets/48628160/todolists/10249028248" target="_blank" rel="noopener"><span class="name">Education and development</span><span class="bc" title="Basecamp: Exact">●</span></a><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Program · updated per season
+Part of: Fundamental
+Basecamp: Community &amp; Engagement (to-do list)
+Basecamp list is &quot;Community &amp; Engagement&quot;; the site renamed the area. To-do list in Circle:Fundamental." href="https://app.basecamp.com/6021648/buckets/48628160/todolists/10249026942" target="_blank" rel="noopener"><span class="name">Center rhythms, spaces and culture</span><span class="bc" title="Basecamp: Name differs">◐</span></a><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Program · updated per season
+Part of: Fundamental
+Basecamp: Infrastructure &amp; Tools (to-do list)
+&quot;&amp;&quot; vs &quot;and&quot;, capital T. To-do list in Circle:Fundamental." href="https://app.basecamp.com/6021648/buckets/48628160/todolists/10249025835" target="_blank" rel="noopener"><span class="name">Infrastructure and tools</span><span class="bc" title="Basecamp: Name differs">◐</span></a><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Program · updated per season
+Part of: Fundamental
+Basecamp: Comms &amp; SoMe (to-do list)
+Basecamp list is &quot;Comms &amp; SoMe&quot;. To-do list in Circle:Fundamental." href="https://app.basecamp.com/6021648/buckets/48628160/todolists/10249025188" target="_blank" rel="noopener"><span class="name">Communication and social media</span><span class="bc" title="Basecamp: Name differs">◐</span></a><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Program · updated per season
+Part of: Fundamental
+Basecamp: Onboarding (to-do list)
+A to-do list in Circle:Fundamental, not a project." href="https://app.basecamp.com/6021648/buckets/48628160/todolists/10249024555" target="_blank" rel="noopener"><span class="name">Onboarding</span><span class="bc" title="Basecamp: Exact">●</span></a></div><div class="col"><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Program · updated per season
+Part of: PharmaDataScience Research Community
+No Basecamp home for the research themes; the groups meet in the Research Community project."><span class="name">Disease and target biology</span></div><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Program · updated per season
+Part of: PharmaDataScience Research Community
+No Basecamp home for the research themes; the groups meet in the Research Community project."><span class="name">Molecular design and new modalities</span></div><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Program · updated per season
+Part of: PharmaDataScience Research Community
+No Basecamp home for the research themes; the groups meet in the Research Community project."><span class="name">Formulation and pharmaceutical materials</span></div><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Program · updated per season
+Part of: PharmaDataScience Research Community
+No Basecamp home for the research themes; the groups meet in the Research Community project."><span class="name">Pharmacometrics and clinical pharmacology</span></div><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Program · updated per season
+Part of: PharmaDataScience Research Community
+No Basecamp home for the research themes; the groups meet in the Research Community project."><span class="name">Real-world evidence and drug safety</span></div><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Program · updated per season
+Part of: PharmaDataScience Research Community
+No Basecamp home for the research themes; the groups meet in the Research Community project."><span class="name">Pharma data-science education</span></div></div><div class="col"></div></div></section><section class="band"><div class="level"><strong>Research group</strong><small>Self defined</small></div><div class="cells"><div class="col"></div><div class="col"></div><div class="col"><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Research group · updated per self defined
+Part of: Formulation and pharmaceutical materials
+No Basecamp project for the group (placeholder &quot;GroupKarlis?&quot;)."><span class="name">Karlis Berzins</span><span class="parent">↳ Formulation and pharmaceutical materials</span></div></div><div class="col"></div></div></section><section class="band"><div class="level"><strong>Project</strong><small>Defined start and end · Episode</small></div><div class="cells"><div class="col"><a class="box" style="--bg:#F2DCDC;--fg:#7A1F1F" title="Project · updated per episode
+Part of: People Development
+Basecamp: Teach the Teachers DS Workshop Materials (card)
+Card in Circle:Fundamental (&quot;Planned (Next Episode)&quot;), while the workbook&#x27;s parent is People Development. WS:People development also has a &quot;Teach the teachers&quot; to-do list." href="https://app.basecamp.com/6021648/buckets/48628160/card_tables/cards/10465247797" target="_blank" rel="noopener"><span class="name">Make Teach the teacher workshop</span><span class="bc" title="Basecamp: Name differs">◐</span><span class="parent">↳ People Development</span></a><div class="box" style="--bg:#F2DCDC;--fg:#7A1F1F" title="Project · updated per defined start and end
+Part of: Curriculum Upgrade
+Placeholder course; SDU course upgrades are tracked as to-dos in WS:Curriculum upgrade."><span class="name">Upgrade SDUCourse xxxx</span><span class="parent">↳ Curriculum Upgrade</span></div></div><div class="col"><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Project · updated per episode
+Part of: Infrastructure and tools
+Basecamp: AI in Education Guide (card)
+&quot;Guide&quot; vs &quot;Guidance Presentation&quot;. Card in Circle:Fundamental (&quot;Planned (Next Episode)&quot;)." href="https://app.basecamp.com/6021648/buckets/48628160/card_tables/cards/10465263006" target="_blank" rel="noopener"><span class="name">Make AI in Education Guidance Presentation</span><span class="bc" title="Basecamp: Name differs">◐</span><span class="parent">↳ Infrastructure and tools</span></a><a class="box" style="--bg:#DDE5DD;--fg:#3C5E3E" title="Project · updated per episode
+Part of: Infrastructure and tools
+Basecamp: Internal Information Architecture (card)
+Unsure: the only planned Fundamental card about infrastructure. Check that it is the same project." href="https://app.basecamp.com/6021648/buckets/48628160/card_tables/cards/10465270895" target="_blank" rel="noopener"><span class="name">Consolidate data infrastructure</span><span class="bc" title="Basecamp: Possible">○</span><span class="parent">↳ Infrastructure and tools</span></a></div><div class="col"><div class="box" style="--bg:#E9EFE3;--fg:#5F7D61" title="Project · updated per defined start and end
+Part of: PharmaDataScience Research Community
+Not found in Basecamp."><span class="name">?PDS Student Conference</span><span class="parent">↳ PharmaDataScience Research Community</span></div></div><div class="col"></div></div></section>
+</div>
+<p class="legend">Basecamp match: ● exact · ◐ name differs · ○ possible. Boxes without a mark have no Basecamp home yet.</p>
+</body>
+</html>
