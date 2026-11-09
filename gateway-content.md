@@ -99,8 +99,7 @@ with Arnault.
 
 Lead: Arnault-Quentin Vermillet (with Sarah Mittenentzwei at SDU later, if needed).
 Advisory board: Institutional Advisory Board.
-Basecamp: no project for this service found. The closest related project is
-[Research Support Tasks & Data Science Projects](https://3.basecamp.com/6021648/projects/46868831).
+Basecamp: [WS:Research Project Consulting](https://3.basecamp.com/6021648/projects/48628171)
 
 ### Research Group Strategy Consulting (`SV03`)
 
@@ -547,8 +546,8 @@ Basecamp: [Circle:Mission](https://3.basecamp.com/6021648/projects/43870021)
 3. **Fundamental areas:** the vault register lists about 30 owned responsibilities.
    Which of the five areas each belongs to is not recorded anywhere, so the grouping
    above needs a check by the owners.
-4. **Research Project Consulting** has no project in Basecamp that I could
-   see, although the WoW 2.0 announcement lists one.
+4. **Research Project Consulting**: its Basecamp project is WS:Research Project Consulting
+   (48628171), fixed by Sarah on the site on 23 Oct 2026 and now in this file too.
 5. **Research Group Strategy Consulting:** the output format is still undefined.
 6. **Education and development (`FU01`):** partly overlaps Curriculum Upgrade and
    People Development. Review where the boundary between Fundamental and Services
